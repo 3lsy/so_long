@@ -6,23 +6,28 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/06/22 20:23:02 by echavez-         ###   ########.fr        #
+#    Updated: 2023/06/22 21:21:25 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME        =                               # Name of the binary
+NAME        =   so_long
 
 #****************** INC *******************#
 # General
 INC         =   ./include/                  # Project header files drectory
 
 # Libft
-LIB         =   ./libft/                    # Library to include
-LIB_H       =   ./libft/                    # Library header files directory
+LIB         =   ./lib/libft/                # Library to include
+LIB_H       =   ./lib/libft/                # Library header files directory
 
-INCLUDE     =   -O3 -I $(LIB_H) -I $(INC)   # Header files
+# Minilibx
+LIBMLX         =   ./lib/minilibx-linux/    # Library to include
+LIBMLX_H       =   ./lib/minilibx-linux/    # Library header files directory
 
-LIB_INC     =   -L$(LIB_H) -lft             # Include library
+
+INCLUDE     =   -O3 -I $(LIB_H) -I $(LIBMLX_H) -I $(INC)
+
+LIB_INC     =   -L$(LIB) -lft -L$(LIBMLX) -lmlx -lXext -lX11 -lm -lbsd
 
 #****************** SRC *******************#
 
@@ -31,7 +36,7 @@ DIRFOO      :=  #$(DIRSRC)/foo/
 
 DIRS        :=  $(DIRSRC) $(DIRFOO)
 
-SRC         =   # main.c
+SRC         =   main.c
 FOO         =
 
 SRCS        :=  $(SRC) $(FOO)
@@ -103,6 +108,7 @@ clean           :
 	                @($(RM) $(DEPS))
 	                @($(RM) $(DIROBJ))
 	                @(cd $(LIB) && $(MAKE) clean)
+					@(cd $(LIBMLX) && $(MAKE) clean)
 	                @$(ECHO) $(BOLD)$(RED)'> '$(NAME)' directory        cleaned'$(E0M)
 
 all             :       $(NAME)
@@ -110,12 +116,14 @@ all             :       $(NAME)
 fclean          :       clean
 	                @$(RM) $(NAME)
 	                @(cd $(LIB) && $(MAKE) fclean)
+					@(cd $(LIBMLX) && $(MAKE) fclean)
 	                @$(ECHO) $(BOLD)$(RED)'> Executable             removed'$(E0M)
 
 re              :       fclean all
 
 ftlib           :
 	                @(cd $(LIB) && $(MAKE))
+					@(cd $(LIBMLX) && $(MAKE))
 
 init            :
 	                @$(GIT) submodule init
