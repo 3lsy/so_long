@@ -6,7 +6,7 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/06/23 15:24:24 by echavez-         ###   ########.fr        #
+#    Updated: 2023/06/24 00:15:14 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,7 +32,7 @@ LIB_INC     =   -L$(LIB) -lft -L$(LIBMLX) -lmlx -lXext -lX11 -lm -lbsd
 #****************** SRC *******************#
 
 DIRSRC      =   ./src/
-DIRFOO      :=  #$(DIRSRC)/foo/
+#DIRFOO      :=  $(DIRSRC)/analyzer/
 
 DIRS        :=  $(DIRSRC) $(DIRFOO)
 
