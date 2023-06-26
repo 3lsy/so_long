@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/24 00:17:30 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:42:25 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,52 @@
 # include <errno.h>
 # include <string.h>
 
+/*
+**	Terrain types:
+**       0 - Empty Space
+**           Active: N/A Inactive: N/A
+**
+**       1 - Wall
+**           Active: N/A Inactive: N/A
+**
+**       C - Empty Space with collectible
+**           Active: C   Inactive: 0
+**
+**       E - Empty Space with exit door
+**           Active: E   Inactive: 0
+**	Status:
+**	     1 - Active
+**       0 - Inactive
+*/
+
+typedef	struct	s_terrain {
+	char		type;
+	int			x;
+	int			y;
+	t_bool		status;
+}	t_terrain;
+
 typedef struct s_player {
-	int			pos[2];
+	int			x;
+	int			y;
 }	t_player;
 
 /*
-**	c := Collectibles
+**	collects := Collectibles counter
 */
 
 typedef struct s_sl {
 	char		*filename;
 	int			fd;
+
+	int			collects;
+	int			map_height;
+	int			map_width;
+
 	char		**map;
-	t_player	player;
-	int			c;
+	t_player	p;
+	t_terrain	*c;
+	t_terrain	e;
 }	t_sl;
 
 /*

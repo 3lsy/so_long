@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:17:31 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/24 00:26:50 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/27 00:24:47 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,60 +35,6 @@ int	valid_name(char *filename)
 	}
 	ft_sl()->filename = filename;
 	return (1);
-}
-
-void	verify_wall(char *line, int size, int fd)
-{
-	while (line && size > 0)
-	{
-		size--;
-		if (line[size] != '1')
-		{
-			free(line);
-			close(fd);
-			exit_error("Missing wall on map border\n");
-		}
-	}
-}
-
-// count if AT LEAST 1 C collectible
-void	verify_map(void)
-{
-	char	*line;
-	int		fd;
-	int		size;
-	//int		exit;// count if ONLY 1 E
-	//int		playerpos;// count if ONLY 1 P
-
-	fd = open(ft_sl()->filename, O_RDONLY);
-	if (fd < 0)
-		exit_error(strerror(errno));
-	line = ft_get_next_line(fd);
-	size = ft_strlen(line);
-	verify_wall(line, size, fd);
-	while (line)
-	{
-		ft_putendl(line);/////////
-		if (line[0] != '1' || line[size - 1] != '1')
-		{
-			close(fd);
-			free(line);
-			exit_error("Missing wall on map border\n");
-		}
-		free(line);
-		line = ft_get_next_line(fd);
-		if (line && size != (int)ft_strlen(line))
-		{
-			ft_putendl(line);
-			close(fd);
-			free(line);
-			exit_error("Inconsistent map dimensions\n");
-		}
-	}
-	verify_wall(line, size, fd);
-	if (line)
-		free(line);
-	close(fd);
 }
 
 /*

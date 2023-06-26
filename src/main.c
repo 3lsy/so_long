@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/24 00:19:22 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/26 19:44:38 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ static __attribute__((constructor)) void	sl_constructor(void)
 	ft_sl()->filename = NULL;
 	ft_sl()->fd = 0;
 	ft_sl()->map = NULL;
+	ft_sl()->map_height = 0;
+	ft_sl()->map_width = 0;
+	ft_sl()->collects = 0;
+	ft_sl()->p.x = -1;
+	ft_sl()->p.y = -1;
+	ft_sl()->e.type = 'E';
+	ft_sl()->e.status = 0;
+	ft_sl()->e.x = -1;
+	ft_sl()->e.y = -1;
+	ft_sl()->c = NULL;
 }
 
 static __attribute__((destructor)) void	sl_destructor(void)
