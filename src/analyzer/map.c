@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/27 00:14:06 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:17:41 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	set_player(char *line, int x, int y, int fd)
 		ft_putendl(line);
 		close(fd);
 		free(line);
-		exit_error("There's more than one P");
+		exit_error("There's more than one P\n");
 	}
 	ft_sl()->p.x = x;
 	ft_sl()->p.y = y;
@@ -68,7 +68,7 @@ void	set_exit(char *line, int x, int y, int fd)
 		ft_putendl(line);
 		close(fd);
 		free(line);
-		exit_error("There's more than one E");
+		exit_error("There's more than one E\n");
 	}
 	ft_sl()->e.x = x;
 	ft_sl()->e.y = y;
@@ -82,12 +82,12 @@ void	verify_item(char *line, int x, int y, int fd)
 		set_player(line, x, y, fd);
 	else if (line[x] == 'E')
 		set_exit(line, x, y, fd);
-	else if (line[x] != '0' && line[x] != '1');
+	else if (line[x] != '0' && line[x] != '1')
 	{
 		ft_putendl(line);
 		close(fd);
 		free(line);
-		exit_error("Unrecognized character in map");
+		exit_error("Unrecognized character in map\n");
 	}
 }
 
@@ -101,7 +101,7 @@ void	verify_line(char *line, int fd)
 	verify_dimensions(line, ft_sl()->map_width, fd);
 	while (i < ft_sl()->map_width)
 	{
-		verify_item(line[i], i, ft_sl()->map_height, fd);
+		verify_item(line, i, ft_sl()->map_height, fd);
 		i++;
 	}
 }

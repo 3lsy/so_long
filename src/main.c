@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/26 19:44:38 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/27 23:16:28 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	usage(void)
 
 int main(int ac, char **av)
 {
+	(void)av;
 	if (ac == 2 && valid_name(av[1]))
 		verify_map();
 	else

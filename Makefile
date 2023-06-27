@@ -6,7 +6,7 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/06/24 00:15:14 by echavez-         ###   ########.fr        #
+#    Updated: 2023/06/27 23:14:38 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -32,12 +32,12 @@ LIB_INC     =   -L$(LIB) -lft -L$(LIBMLX) -lmlx -lXext -lX11 -lm -lbsd
 #****************** SRC *******************#
 
 DIRSRC      =   ./src/
-#DIRFOO      :=  $(DIRSRC)/analyzer/
+DIRFOO      :=  $(DIRSRC)analyzer/
 
 DIRS        :=  $(DIRSRC) $(DIRFOO)
 
-SRC         =   main.c analyzer.c
-FOO         =
+SRC         =   main.c
+FOO         =	analyzer.c map.c
 
 SRCS        :=  $(SRC) $(FOO)
 
@@ -93,15 +93,22 @@ E0M         =   "\e[0m"
 
 #******************************* DEPS COMPILATION ********************************#
 
-%.o             :       $(foreach dir,$(DIRS),../$(dir)/%.c)
-	                @printf $(GREEN)"Generating "$(NAME)" objects... %-33.33s\r"$(E0M) $@
-	                @$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $@ -c $<
+define generate_objects
+$(DIROBJ)%.o    :   $(1)%.c
+	                @printf $(GREEN)"Generating $(NAME) objects... %-33.33s\r"$(E0M) $$@
+	                @$(CC) $(CFLAGS) $(INCLUDE) -MMD -o $$@ -c $$<
+endef
+
+# Generate objects
+$(foreach dir,$(DIRS),$(eval $(call generate_objects,$(dir))))
 
 #******************************* MAIN COMPILATION ********************************#
 
 $(NAME)         :       ftlib $(OBJS)
 	                @$(CC) $(INCLUDE) $(CFLAGS) -o $(NAME) $(OBJS) $(LIB_INC)
 	                @$(ECHO) $(BOLD)$(GREEN)'> '$(NAME)' Compiled'$(E0M)
+
+$(OBJS): | mkdepo
 
 clean           :
 	                @($(RM) $(OBJS))
@@ -119,7 +126,12 @@ fclean          :       clean
 					@(cd $(LIBMLX) && $(MAKE) fclean)
 	                @$(ECHO) $(BOLD)$(RED)'> Executable             removed'$(E0M)
 
-re              :       fclean all
+
+re              :  fclean mkdepo all
+
+mkdepo			:
+					@$(MKDIR) $(DIROBJ)
+
 
 ftlib           :
 	                @(cd $(LIB) && $(MAKE))
