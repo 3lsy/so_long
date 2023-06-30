@@ -36,9 +36,8 @@ jobs:
 
       - name: Norme test
         run: |
-          #export PATH=$HOME/.local/bin:$PATH
-          #ls -l $HOME/.local/bin/
           norminette -v
+          norminette src include lib/libft
           norme=$(norminette src include lib/libft | grep -v OK)
           echo "Norme:"
           echo "$norme"
