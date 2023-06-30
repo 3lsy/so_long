@@ -37,7 +37,7 @@ jobs:
       - name: Norme test
         run: |
           norminette -v
-          norminette src include lib/libft | grep -v OK > norme_output.txt
+          norminette src include lib/libft | grep -v OK > norme_output.txt || true
           norme=$(cat norme_output.txt)
           if [ -z "$norme" ]; then
             echo "Everything is on the norme! ✅🔥"
