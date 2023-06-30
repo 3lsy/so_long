@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/27 23:16:28 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:39:54 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	usage(void)
 	exit(1);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	(void)av;
 	if (ac == 2 && valid_name(av[1]))
@@ -42,30 +42,28 @@ void	exit_error(char *e)
 
 t_sl	*ft_sl(void)
 {
-	static t_sl	x;
+	static t_sl	x = {
+		.filename = NULL,
+		.fd = 0,
+		.collects = 0,
+		.map_height = 0,
+		.map_width = 0,
+		.map = NULL,
+		.p = {.x = -1, .y = -1},
+		.e = {.type = 'E', .status = 0, .x = -1, .y = -1},
+		.c = NULL
+	};
 
 	return (&x);
-}
-
-static __attribute__((constructor)) void	sl_constructor(void)
-{
-	ft_sl()->filename = NULL;
-	ft_sl()->fd = 0;
-	ft_sl()->map = NULL;
-	ft_sl()->map_height = 0;
-	ft_sl()->map_width = 0;
-	ft_sl()->collects = 0;
-	ft_sl()->p.x = -1;
-	ft_sl()->p.y = -1;
-	ft_sl()->e.type = 'E';
-	ft_sl()->e.status = 0;
-	ft_sl()->e.x = -1;
-	ft_sl()->e.y = -1;
-	ft_sl()->c = NULL;
 }
 
 static __attribute__((destructor)) void	sl_destructor(void)
 {
 	if (ft_sl()->map != NULL)
-		ft_free_split(&ft_sl()->map);
+	{
+		while (ft_sl()->map_height > 0)
+			free(ft_sl()->map[--ft_sl()->map_height]);
+		free(ft_sl()->map);
+		ft_sl()->map = NULL;
+	}
 }

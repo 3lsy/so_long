@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:17:31 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/27 00:24:47 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:58:46 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,31 @@ int	valid_name(char *filename)
 	}
 	ft_sl()->filename = filename;
 	return (1);
+}
+
+void	verify_map(void)
+{
+	char	*line;
+	int		fd;
+
+	fd = open(ft_sl()->filename, O_RDONLY);
+	if (fd < 0)
+		exit_error(strerror(errno));
+	line = ft_get_next_line(fd);
+	while (line)
+	{
+		ft_sl()->map_height++;
+		verify_wall(line, ft_strlen(line), fd, ft_sl()->map_width == 0);
+		verify_line(line, fd);
+		free(line);
+		line = ft_get_next_line(fd);
+	}
+	if (line)
+	{
+		verify_wall(line, ft_sl()->map_width, fd, 1);
+		free(line);
+	}
+	close(fd);
 }
 
 /*
