@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/27 23:17:41 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:05:03 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	verify_wall(char *line, int size, int fd, int row)
 	}
 }
 
-void	verify_dimensions(char *line, int size, int fd)
+static void	verify_dimensions(char *line, int size, int fd)
 {
 	if (line && size != (int)ft_strlen(line))
 	{
@@ -48,40 +48,45 @@ void	verify_dimensions(char *line, int size, int fd)
 	}
 }
 
-void	set_player(char *line, int x, int y, int fd)
-{
-	if (ft_sl()->p.x != -1)
-	{
-		ft_putendl(line);
-		close(fd);
-		free(line);
-		exit_error("There's more than one P\n");
-	}
-	ft_sl()->p.x = x;
-	ft_sl()->p.y = y;
-}
+/*
+** Accepted elements:
+**	set player P
+**	set exit   E
+*/
 
-void	set_exit(char *line, int x, int y, int fd)
+static void	set_element(char *line, int x, int y, int fd)
 {
-	if (ft_sl()->e.x != -1)
+	int	*slx;
+	int	*sly;
+
+	if (line[x] != 'E' && line[x] != 'P')
+		exit_error(line);
+	slx = &(ft_sl()->p.x);
+	sly = &(ft_sl()->p.y);
+	if (line[x] == 'E')
+	{
+		slx = &(ft_sl()->e.x);
+		sly = &(ft_sl()->e.y);
+	}
+	if (*slx != -1)
 	{
 		ft_putendl(line);
 		close(fd);
 		free(line);
-		exit_error("There's more than one E\n");
+		if (line[x] == 'P')
+			exit_error("There's more than one P\n");
+		exit_error("There's more than one E");
 	}
-	ft_sl()->e.x = x;
-	ft_sl()->e.y = y;
+	*slx = x;
+	*sly = y;
 }
 
 void	verify_item(char *line, int x, int y, int fd)
 {
 	if (line[x] == 'C')
 		ft_sl()->collects++;
-	else if (line[x] == 'P')
-		set_player(line, x, y, fd);
-	else if (line[x] == 'E')
-		set_exit(line, x, y, fd);
+	else if (line[x] == 'P' || line[x] == 'E')
+		set_element(line, x, y, fd);
 	else if (line[x] != '0' && line[x] != '1')
 	{
 		ft_putendl(line);
@@ -104,30 +109,4 @@ void	verify_line(char *line, int fd)
 		verify_item(line, i, ft_sl()->map_height, fd);
 		i++;
 	}
-}
-
-void	verify_map(void)
-{
-	char	*line;
-	int		fd;
-
-	fd = open(ft_sl()->filename, O_RDONLY);
-	if (fd < 0)
-		exit_error(strerror(errno));
-	line = ft_get_next_line(fd);
-	while (line)
-	{
-		ft_sl()->map_height++;
-		verify_wall(line, ft_strlen(line), fd, ft_sl()->map_width == 0);
-		verify_line(line, fd);
-		ft_putendl(line);/////////
-		free(line);
-		line = ft_get_next_line(fd);
-	}
-	if (line)
-	{
-		verify_wall(line, ft_sl()->map_width, fd, 1);
-		free(line);
-	}
-	close(fd);
 }

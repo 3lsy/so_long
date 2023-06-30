@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/27 23:15:49 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:04:23 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ typedef struct s_sl {
 	int			map_height;
 	int			map_width;
 
-	char		**map;
+	t_terrain	**map;
 	t_player	p;
-	t_terrain	*c;
 	t_terrain	e;
+	t_terrain	*c;
 }	t_sl;
 
 /*
@@ -84,5 +84,7 @@ t_sl	*ft_sl(void);
 int		valid_name(char *filename);
 void	read_map(void);
 void	verify_map(void);
+void	verify_wall(char *line, int size, int fd, int row);
+void	verify_line(char *line, int fd);
 
 #endif
