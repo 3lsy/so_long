@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:43:26 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/01 00:28:36 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/01 00:38:46 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 void	load_line(char *line, int i)
 {
-	int	j;
+	int			j;
+	t_terrain	tmp;
 
 	j = 0;
 	while (line && j < ft_sl()->map_width)
 	{
+		tmp.x = j;
+		tmp.y = i;
+		tmp.status = 0;
 		if (line[j] == '0' || line[j] == 'P')
-			ft_sl()->map[i][j] = (t_terrain){.type = '0', .status = 0,
-				.x = j, .y = i};
+			tmp.type = '0';
 		else if (line[j] == '1')
-			ft_sl()->map[i][j] = (t_terrain){.type = '1', .status = 0,
-				.x = j, .y = i};
+			tmp.type = '1';
 		else if (line[j] == 'C')
-			ft_sl()->map[i][j] = (t_terrain){.type = 'C', .status = 1,
-				.x = j, .y = i};
+		{
+			tmp.type = 'C';
+			tmp.status = 1;
+		}
 		else
-			ft_sl()->map[i][j] = (t_terrain){.type = 'E', .status = 0,
-				.x = j, .y = i};
+			tmp.type = 'E';
+		ft_sl()->map[i][j] = tmp;
 		j++;
 	}
-	ft_sl()->map[i][j] = (t_terrain){'\0', 0, 0, 0};
+	tmp.type = '\0';
+	ft_sl()->map[i][j] = tmp;
 }
 
 void	load_map(void)
@@ -52,7 +57,7 @@ void	load_map(void)
 	i = 0;
 	while (line)
 	{
-		ft_putendl(line);/////////
+		ft_putendl(line);
 		ft_sl()->map[i] = malloc(sizeof(t_terrain) * (ft_sl()->map_width + 1));
 		if (!ft_sl()->map[i])
 			exit_error("Map couldn't be allocated");
