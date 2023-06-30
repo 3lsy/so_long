@@ -6,11 +6,11 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/30 13:41:01 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/06/30 14:06:22 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	SO_LONG_H
+#ifndef SO_LONG_H
 # define SO_LONG_H
 
 # include "libft.h"
