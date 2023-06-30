@@ -40,6 +40,7 @@ jobs:
           norme=$(norminette src include lib/libft | grep -v OK)
           if [ -z "$norme" ]; then
             echo "Everything is on the norme! ✅🔥"
+            exit 0
           else
             echo "Norme:"
             echo "$norme"
