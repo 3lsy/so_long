@@ -37,7 +37,8 @@ jobs:
       - name: Norme test
         run: |
           norminette -v
-          norminette src include lib/libft
+          norminette src include lib/libft | grep -v OK
+	  echo ";)"
           norme=$(norminette src include lib/libft | grep -v OK)
           echo "Norme:"
           echo "$norme"
