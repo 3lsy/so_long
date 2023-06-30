@@ -41,6 +41,7 @@ jobs:
           if [ -z "$norme" ]; then
             echo "Everything is on the norme! ✅🔥"
           else
+            echo "Norme:"
             echo "$norme"
             echo "Norme FAILURE! 😞❌"
             exit 1
