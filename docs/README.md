@@ -9,4 +9,3 @@
  - Empty Space with exit door
 - Player
 
--
