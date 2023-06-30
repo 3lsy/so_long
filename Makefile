@@ -6,7 +6,7 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/06/27 23:14:38 by echavez-         ###   ########.fr        #
+#    Updated: 2023/07/01 00:21:42 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -33,13 +33,15 @@ LIB_INC     =   -L$(LIB) -lft -L$(LIBMLX) -lmlx -lXext -lX11 -lm -lbsd
 
 DIRSRC      =   ./src/
 DIRFOO      :=  $(DIRSRC)analyzer/
+DIRLOAD		:=	$(DIRSRC)load/
 
-DIRS        :=  $(DIRSRC) $(DIRFOO)
+DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD)
 
 SRC         =   main.c
 FOO         =	analyzer.c map.c
+LOAD		=	load.c
 
-SRCS        :=  $(SRC) $(FOO)
+SRCS        :=  $(SRC) $(FOO) $(LOAD)
 
 #***************** DEPS ******************#
 
