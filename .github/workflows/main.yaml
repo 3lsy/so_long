@@ -38,7 +38,7 @@ jobs:
         run: |
           export PATH=$HOME/.local/bin:$PATH
           norme=$(norminette src include lib/libft | grep -v OK)
-          if [ -z "$a" ]; then
+          if [ -z "$norme" ]; then
             echo "Everything is on the norme! ✅🔥"
           else
             echo "Norme FAILURE! 😞❌"
