@@ -30,7 +30,8 @@ jobs:
           for map in maps/*.ber; do
             echo "Testing $map..."
             valmessage=$(valgrind ./so_long "$map" 2>&1 || true)
-            leaks=$(echo "$valmessage" | grep 'no leaks are possible')
+			echo "Map tested with valgrind!"
+            leaks=$(echo "$valmessage" | grep 'no leaks are possible' || true)
             if [ ! -z "$leaks" ]; then
               echo "There are no leaks for $map! ✅🔥"
             else
