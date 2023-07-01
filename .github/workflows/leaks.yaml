@@ -17,7 +17,6 @@ jobs:
         with:
           submodules: true
 
-
       - name: Install dependencies
         run: |
           sudo apt-get update && sudo apt-get -y install valgrind xorg \
@@ -28,14 +27,16 @@ jobs:
 
       - name: Leak test
         run: |
-          valmessage=$(valgrind ./so_long maps/minimal.ber 2>&1)
-          leaks=$(echo $valmessage | grep 'no leaks are possible')
-          if [ ! -z "$leaks" ]; then
-            echo "There are no leaks! ✅🔥"
-            exit 0
-          else
-            echo "Errors:"
-            echo "$valmessage"
-            echo "Leaks FAILURE! 😞❌"
-            exit 1
-          fi
+          for map in maps/*.ber; do
+            echo "Testing $map..."
+            valmessage=$(valgrind ./so_long "$map" 2>&1)
+            leaks=$(echo "$valmessage" | grep 'no leaks are possible')
+            if [ ! -z "$leaks" ]; then
+              echo "There are no leaks for $map! ✅🔥"
+            else
+              echo "Errors for $map:"
+              echo "$valmessage"
+              echo "Leaks FAILURE for $map! 😞❌"
+              exit 1
+            fi
+          done
