@@ -1,0 +1,38 @@
+name: Leak Tests
+
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'include/**'
+      - 'lib/libft/**'
+  workflow_dispatch:
+jobs:
+  leak-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get -y install valgrind xorg \
+            libxext-dev zlib1g-dev libbsd-dev
+
+      - name: Build so_long
+        run: make
+
+      - name: Leak test
+        run: |
+          valmessage=$(valgrind ./so_long maps/minimal.ber 2>&1)
+          leaks=$(echo $valmessage | grep 'no leaks are possible')
+          if [ ! -z "$leaks" ]; then
+            echo "There are no leaks! ✅🔥"
+            exit 0
+          else
+            echo "Errors:"
+            echo "$valmessage"
+            echo "Leaks FAILURE! 😞❌"
+            exit 1
+          fi

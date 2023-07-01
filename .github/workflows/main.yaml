@@ -7,8 +7,6 @@ on:
       - 'include/**'
       - 'lib/libft/**'
   workflow_dispatch:
-permissions:
-  contents: write
 jobs:
   norme-test:
     runs-on: ubuntu-latest
