@@ -6,6 +6,7 @@ on:
       - 'src/**'
       - 'include/**'
       - 'lib/libft/**'
+      - 'maps/**'
   workflow_dispatch:
 jobs:
   leak-test:
