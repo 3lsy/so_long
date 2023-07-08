@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:17:31 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/29 23:58:46 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:05:04 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,13 @@ void	verify_map(void)
 		free(line);
 	}
 	close(fd);
+}
+
+void	exit_error_gnl(char *e)
+{
+	ft_perror("Error\n", EXIT_FAILURE);
+	ft_get_next_line(-503);
+	exit(ft_perror(e, EXIT_FAILURE));
 }
 
 /*

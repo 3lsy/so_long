@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/29 23:05:03 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:03:17 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	verify_wall(char *line, int size, int fd, int row)
 		free(line);
 		ft_get_next_line(-503);
 		close(fd);
-		exit_error("Missing wall on map border\n");
+		exit_error_gnl("Missing wall on map border\n");
 	}
 }
 
@@ -42,9 +42,9 @@ static void	verify_dimensions(char *line, int size, int fd)
 	if (line && size != (int)ft_strlen(line))
 	{
 		ft_putendl(line);
-		close(fd);
 		free(line);
-		exit_error("Inconsistent map dimensions\n");
+		close(fd);
+		exit_error_gnl("Inconsistent map dimensions\n");
 	}
 }
 
@@ -60,7 +60,7 @@ static void	set_element(char *line, int x, int y, int fd)
 	int	*sly;
 
 	if (line[x] != 'E' && line[x] != 'P')
-		exit_error(line);
+		exit_error_gnl(line);
 	slx = &(ft_sl()->p.x);
 	sly = &(ft_sl()->p.y);
 	if (line[x] == 'E')
@@ -74,8 +74,8 @@ static void	set_element(char *line, int x, int y, int fd)
 		close(fd);
 		free(line);
 		if (line[x] == 'P')
-			exit_error("There's more than one P\n");
-		exit_error("There's more than one E");
+			exit_error_gnl("There's more than one P\n");
+		exit_error_gnl("There's more than one E");
 	}
 	*slx = x;
 	*sly = y;
@@ -92,7 +92,7 @@ void	verify_item(char *line, int x, int y, int fd)
 		ft_putendl(line);
 		close(fd);
 		free(line);
-		exit_error("Unrecognized character in map\n");
+		exit_error_gnl("Unrecognized character in map\n");
 	}
 }
 

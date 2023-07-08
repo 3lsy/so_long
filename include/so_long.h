@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/06/30 14:06:22 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:00:39 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ typedef struct s_sl {
 */
 
 void	exit_error(char *e);
+void	exit_error_gnl(char *e);
 t_sl	*ft_sl(void);
 
 /*
