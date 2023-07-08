@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/08 12:03:17 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/08 12:44:43 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	verify_line(char *line, int fd)
 
 	i = 0;
 	if (ft_sl()->map_width == 0)
-		ft_sl()->map_width = ft_strlen(line);
+		ft_sl()->map_width = ft_strlen(line) + 1;
 	verify_dimensions(line, ft_sl()->map_width, fd);
 	while (i < ft_sl()->map_width)
 	{
