@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/08 12:00:39 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/10 00:40:05 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@
 # include <math.h>
 # include <errno.h>
 # include <string.h>
+# include <mlx.h>
+
+# define E_CLOSE 131072
+# define WIN_SY 500
+# define WIN_SX 1200
 
 /*
 **	Terrain types:
@@ -53,7 +58,17 @@ typedef struct s_player {
 }	t_player;
 
 /*
+**  win := windows
+*/
+
+typedef struct s_graphics {
+	void		*mlx;
+	void		*win;
+}	t_graphics;
+
+/*
 **	collects := Collectibles counter
+**  g := graphics
 */
 
 typedef struct s_sl {
@@ -68,6 +83,8 @@ typedef struct s_sl {
 	t_player	p;
 	t_terrain	e;
 	t_terrain	*c;
+
+	t_graphics	g;
 }	t_sl;
 
 /*
@@ -75,7 +92,6 @@ typedef struct s_sl {
 */
 
 void	exit_error(char *e);
-void	exit_error_gnl(char *e);
 t_sl	*ft_sl(void);
 
 /*
@@ -87,5 +103,12 @@ void	read_map(void);
 void	verify_map(void);
 void	verify_wall(char *line, int size, int fd, int row);
 void	verify_line(char *line, int fd);
+void	exit_error_gnl(char *e);
+
+/*
+**	Graphics
+*/
+
+void	init_graphics(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/08 12:44:43 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/09 17:53:07 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ static void	set_element(char *line, int x, int y, int fd)
 	}
 	if (*slx != -1)
 	{
-		ft_putendl(line);
+		ft_putendl(line);/////
 		close(fd);
-		free(line);
 		if (line[x] == 'P')
+		{
+			free(line);
 			exit_error_gnl("There's more than one P\n");
+		}
+		free(line);
 		exit_error_gnl("There's more than one E");
 	}
 	*slx = x;
@@ -102,7 +105,7 @@ void	verify_line(char *line, int fd)
 
 	i = 0;
 	if (ft_sl()->map_width == 0)
-		ft_sl()->map_width = ft_strlen(line) + 1;
+		ft_sl()->map_width = ft_strlen(line);
 	verify_dimensions(line, ft_sl()->map_width, fd);
 	while (i < ft_sl()->map_width)
 	{

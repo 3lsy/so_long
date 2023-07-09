@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/08 12:04:28 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/10 00:16:27 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	main(int ac, char **av)
 {
 	(void)av;
 	if (ac == 2 && valid_name(av[1]))
+	{
 		verify_map();
+		init_graphics();
+	}
 	else
 		usage();
 	return (0);
@@ -51,7 +54,8 @@ t_sl	*ft_sl(void)
 		.map = NULL,
 		.p = {.x = -1, .y = -1},
 		.e = {.type = 'E', .status = 0, .x = -1, .y = -1},
-		.c = NULL
+		.c = NULL,
+		.g = {.mlx = NULL, .win = NULL}
 	};
 
 	return (&x);
