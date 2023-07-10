@@ -6,7 +6,7 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/07/09 18:36:09 by echavez-         ###   ########.fr        #
+#    Updated: 2023/07/10 22:24:02 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -41,7 +41,7 @@ DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS)
 SRC         =   main.c
 FOO         =	analyzer.c map.c
 LOAD		=	load.c
-GRAPHICS	=	graphics.c
+GRAPHICS	=	graphics.c image.c
 
 SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS)
 

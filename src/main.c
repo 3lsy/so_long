@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/10 00:16:27 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:36:37 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av)
 	if (ac == 2 && valid_name(av[1]))
 	{
 		verify_map();
+		load_map();
 		init_graphics();
 	}
 	else
@@ -55,7 +56,7 @@ t_sl	*ft_sl(void)
 		.p = {.x = -1, .y = -1},
 		.e = {.type = 'E', .status = 0, .x = -1, .y = -1},
 		.c = NULL,
-		.g = {.mlx = NULL, .win = NULL}
+		.g = {.mlx = NULL, .win = NULL, .img = NULL, .local_endian = -1},
 	};
 
 	return (&x);
@@ -70,4 +71,6 @@ static __attribute__((destructor)) void	sl_destructor(void)
 		free(ft_sl()->map);
 		ft_sl()->map = NULL;
 	}
+	if (ft_sl()->g.img != NULL)
+		free(ft_sl()->g.img);
 }

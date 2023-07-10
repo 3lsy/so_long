@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/10 00:40:05 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/10 23:39:38 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 # include <string.h>
 # include <mlx.h>
 
+# define WALL "./media/redcarpet.xpm"
+
 # define E_CLOSE 131072
-# define WIN_SY 500
-# define WIN_SX 1200
+# define SPRITE 38
 
 /*
 **	Terrain types:
@@ -57,13 +58,25 @@ typedef struct s_player {
 	int			y;
 }	t_player;
 
+typedef struct s_img
+{
+	void		*img;
+	int			bpp;
+	int			bpl;
+	int			endian;
+	char		*data;
+	int			width;
+	int			height;
+}	t_img;
+
 /*
 **  win := windows
 */
-
 typedef struct s_graphics {
 	void		*mlx;
 	void		*win;
+	t_img		**img;
+	int			local_endian;
 }	t_graphics;
 
 /*
@@ -106,9 +119,16 @@ void	verify_line(char *line, int fd);
 void	exit_error_gnl(char *e);
 
 /*
+**  Load
+*/
+
+void	load_map(void);
+
+/*
 **	Graphics
 */
 
 void	init_graphics(void);
+void		ft_plotrt(void);
 
 #endif
