@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:41:28 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/10 23:35:16 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 12:34:43 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,30 @@ static void	fill_img(t_img *img, int w, int h, int **bmp)
 void		ft_plotrt(void)
 {
 	t_sl	*s;
+	int		size;
+	int		i;
+	int		j;
 
 	s = ft_sl();
 	s->g.img = malloc(sizeof(t_img *) * (s->map_height * s->map_width + 1));
 	if (!s->g.img)
 		exit_error(strerror(errno));
-	int	size;
 	size = SPRITE;
-	s->g.img[0] = mlx_xpm_file_to_image(s->g.mlx, WALL, &size, &size);//
+	s->g.img[0] = mlx_xpm_file_to_image(s->g.mlx, WALL, &size, &size);
 	if (!s->g.img[0])
 		exit_error("minilibx img failed\n");
 	s->g.img[0]->width = SPRITE;
 	s->g.img[0]->height = SPRITE;
-
-	int i = 0;
-	if (!s->map)
-		ft_putendl("{MAP DOES NOT EXISTS}");
+	i = 0;
 	while (s->map && i < s->map_height)
 	{
-		int j = 0;
+		j = 0;
 		while (j < s->map_width)
 		{
 			if (s->map && s->map[i][j].type == '1')
 				mlx_put_image_to_window(s->g.mlx, s->g.win, s->g.img[0], j * SPRITE, i * SPRITE);
+			//else if (s->map && s->map[i][j].type == '0')
+			//	mlx_put_image_to_window(s->g.mlx, s->g.win, s->g.img[0], j * SPRITE, i * SPRITE);
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 13:44:47 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 14:02:38 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # include <string.h>
 # include <mlx.h>
 
-# define WALL "./media/wall1.xpm"
+# define WALL "./media/bluetorch.xpm"
 # define FREE_SPACE "./media/wall1.xpm"
 # define COLLECTIBLE "./media/wall1.xpm"
 # define EXIT "./media/wall1.xpm"
 # define PLAYER "./media/wall1.xpm"
 
 # define E_CLOSE 131072
-# define SPRITE 38
+# define SPRITE 36
 
 /*
 **	Terrain types:
