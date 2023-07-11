@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 14:04:28 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 21:53:50 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ int	main(int ac, char **av)
 	if (ac == 2 && valid_name(av[1]))
 	{
 		verify_map();
-		load_map();
 		init_graphics();
+		load_map();
+		ft_plot_map();
 	}
 	else
 		usage();
@@ -53,10 +54,13 @@ t_sl	*ft_sl(void)
 		.map_height = 0,
 		.map_width = 0,
 		.map = NULL,
-		.p = {.x = -1, .y = -1},
-		.e = {.type = 'E', .status = 0, .x = -1, .y = -1},
-		.c = NULL,
-		.g = {.mlx = NULL, .win = NULL, .img = NULL, .local_endian = -1},
+		.p = {
+			.up = {NULL, NULL}, .dw = {NULL, NULL},
+			.lf = {NULL, NULL}, .rg = {NULL, NULL},
+			.rest = {NULL, NULL}, .x = -1, .y = -1
+			},
+		.e = {.img = NULL, .type = 'E', .status = 0, .x = -1, .y = -1},
+		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},
 	};
 
 	return (&x);
@@ -64,13 +68,37 @@ t_sl	*ft_sl(void)
 
 static __attribute__((destructor)) void	sl_destructor(void)
 {
-	if (ft_sl()->map != NULL)
+	t_sl	*s;
+	int	i;
+	int	j;
+
+	s = ft_sl();
+	if (s->map != NULL)
 	{
-		while (ft_sl()->map_height > 0)
-			free(ft_sl()->map[--ft_sl()->map_height]);
-		free(ft_sl()->map);
-		ft_sl()->map = NULL;
+		i = 0;
+		while (i < s->map_height)
+		{
+			j = 0;
+			while (j < s->map_width)
+			{
+				if (s->map[i][j].img)
+					mlx_destroy_image(s->g.mlx, s->map[i][j].img);
+				j++;
+			}
+			free(s->map[i]);
+			i++;
+		}
+		free(s->map);
+		s->map = NULL;
 	}
-	if (ft_sl()->g.img != NULL)
-		free(ft_sl()->g.img);
+	if (s->g.win)
+	{
+		mlx_clear_window(s->g.mlx, s->g.win);
+		mlx_destroy_window(s->g.mlx, s->g.win);
+	}
+	if (s->g.mlx)
+	{
+		mlx_destroy_display(s->g.mlx);
+		free(s->g.mlx);
+	}
 }

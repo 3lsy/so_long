@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 14:02:38 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 22:03:39 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@
 # include <mlx.h>
 
 # define WALL "./media/bluetorch.xpm"
-# define FREE_SPACE "./media/wall1.xpm"
-# define COLLECTIBLE "./media/wall1.xpm"
-# define EXIT "./media/wall1.xpm"
+# define FREE "./media/redcarpet.xpm"
+# define COLLECT "./media/wall1.xpm"
+# define EXIT "./media/orange.xpm"
 # define PLAYER "./media/wall1.xpm"
 
 # define E_CLOSE 131072
-# define SPRITE 36
+# define SPRITE 42
 
 /*
 **	Terrain types:
@@ -50,7 +50,19 @@
 **       0 - Inactive
 */
 
+typedef struct s_img
+{
+	void		*img;
+	int			bpp;//
+	int			bpl;//
+	int			endian;//
+	char		*data;//
+	int			width;
+	int			height;
+}	t_img;
+
 typedef struct s_terrain {
+	t_img		*img;
 	char		type;
 	int			x;
 	int			y;
@@ -58,28 +70,22 @@ typedef struct s_terrain {
 }	t_terrain;
 
 typedef struct s_player {
+	t_img		*up[2];
+	t_img		*dw[2];
+	t_img		*rg[2];
+	t_img		*lf[2];
+	t_img		*rest[2];
 	int			x;
 	int			y;
 }	t_player;
 
-typedef struct s_img
-{
-	void		*img;
-	int			bpp;
-	int			bpl;
-	int			endian;
-	char		*data;
-	int			width;
-	int			height;
-}	t_img;
-
 /*
 **  win := windows
 */
+
 typedef struct s_graphics {
 	void		*mlx;
 	void		*win;
-	t_img		**img;
 	int			local_endian;
 }	t_graphics;
 
@@ -99,7 +105,6 @@ typedef struct s_sl {
 	t_terrain	**map;
 	t_player	p;
 	t_terrain	e;
-	t_terrain	*c;
 
 	t_graphics	g;
 }	t_sl;
@@ -133,6 +138,6 @@ void	load_map(void);
 */
 
 void	init_graphics(void);
-void		ft_plotrt(void);
+void		ft_plot_map(void);
 
 #endif

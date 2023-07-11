@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 16:10:17 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/10 22:36:52 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:24:59 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 
 int	exit_win(__attribute__((unused)) void *p)
 {
-	t_sl	*s;
-
-	s = ft_sl();
-	if (s->g.win)
-	{
-		mlx_clear_window(s->g.mlx, s->g.win);
-		mlx_destroy_window(s->g.mlx, s->g.win);
-	}
-	if (s->g.mlx)
-	{
-		mlx_destroy_display(s->g.mlx);
-		free(s->g.mlx);
-	}
-	exit(0);
+	exit(EXIT_SUCCESS);
 	return (1);
 }
 
@@ -62,13 +49,10 @@ void	init_graphics(void)
 	s->g.mlx = mlx_init();
 	if (!s->g.mlx)
 		exit_error("minilbx init failed\n");
-	s->g.win = mlx_new_window(s->g.mlx, s->map_width * SPRITE, s->map_height * SPRITE,
-		"so_long");
+	s->g.win = mlx_new_window(s->g.mlx, s->map_width * SPRITE,
+			s->map_height * SPRITE, "so_long");
 	if (!s->g.win)
 		exit_error("minilibx window failed\n");
 	mlx_hook(s->g.win, 33, E_CLOSE, exit_win, 0);
 	mlx_key_hook(s->g.win, key_win, s->g.mlx);
-
-	ft_plotrt();
-	mlx_loop(s->g.mlx);
 }

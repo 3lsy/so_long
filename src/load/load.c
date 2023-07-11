@@ -6,11 +6,36 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:43:26 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/01 00:38:46 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:15:32 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	set_space(t_terrain *tmp, char c)
+{
+	int		size;
+	t_sl	*s;
+
+	s = ft_sl();
+	tmp->status = (c == 'C');
+	tmp->type = c;
+	if (c == 'P' || c == '0')
+	{
+		tmp->type = '0';
+		tmp->img = mlx_xpm_file_to_image(s->g.mlx, FREE, &size, &size);
+	}
+	else if (c == '1')
+		tmp->img = mlx_xpm_file_to_image(s->g.mlx, WALL, &size, &size);
+	else if (c == 'C')
+		tmp->img = mlx_xpm_file_to_image(s->g.mlx, COLLECT, &size, &size);
+	else
+		tmp->img = mlx_xpm_file_to_image(s->g.mlx, EXIT, &size, &size);
+	if (!tmp->img)
+		exit_error("minilibx img failed\n");
+	tmp->img->width = SPRITE;
+	tmp->img->height = SPRITE;
+}
 
 void	load_line(char *line, int i)
 {
@@ -22,18 +47,7 @@ void	load_line(char *line, int i)
 	{
 		tmp.x = j;
 		tmp.y = i;
-		tmp.status = 0;
-		if (line[j] == '0' || line[j] == 'P')
-			tmp.type = '0';
-		else if (line[j] == '1')
-			tmp.type = '1';
-		else if (line[j] == 'C')
-		{
-			tmp.type = 'C';
-			tmp.status = 1;
-		}
-		else
-			tmp.type = 'E';
+		set_space(&tmp, line[j]);
 		ft_sl()->map[i][j] = tmp;
 		j++;
 	}
