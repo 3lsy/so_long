@@ -23,10 +23,10 @@
 # include <string.h>
 # include <mlx.h>
 
-# define WALL "./media/redcarpet.xpm"
+# define WALL "./media/bluetorch.xpm"
 
 # define E_CLOSE 131072
-# define SPRITE 38
+# define SPRITE 36
 
 /*
 **	Terrain types:
