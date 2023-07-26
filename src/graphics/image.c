@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:41:28 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 18:16:12 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:48:06 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ void	ft_plot_map(void)
 		{
 			mlx_put_image_to_window(s->g.mlx, s->g.win, s->map[i][j].img,
 									j * SPRITE, i * SPRITE);
+			if (i == s->p.x && j == s->p.y)
+				mlx_put_image_to_window(s->g.mlx, s->g.win, s->p.dw,
+										j * SPRITE, i * SPRITE);
 			j++;
 		}
 		i++;

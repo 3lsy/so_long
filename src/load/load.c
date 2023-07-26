@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:43:26 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 18:15:32 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:51:18 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void	set_space(t_terrain *tmp, char c)
 	tmp->img->height = SPRITE;
 }
 
+void	set_player(int j, int i)
+{
+	int		size;
+	t_sl	*s;
+
+	s = ft_sl();
+	s->p.dw = mlx_xpm_file_to_image(s->g.mlx, D_PLAYER, &size, &size);
+	s->p.x = j;
+	s->p.y = i;
+	s->p.dw->width = SPRITE;
+	s->p.dw->height = SPRITE;
+}
+
 void	load_line(char *line, int i)
 {
 	int			j;
@@ -48,6 +61,8 @@ void	load_line(char *line, int i)
 		tmp.x = j;
 		tmp.y = i;
 		set_space(&tmp, line[j]);
+		if (line[j] == 'P')
+			set_player(j, i);
 		ft_sl()->map[i][j] = tmp;
 		j++;
 	}

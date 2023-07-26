@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 21:53:50 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:13:41 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ t_sl	*ft_sl(void)
 		.map_width = 0,
 		.map = NULL,
 		.p = {
-			.up = {NULL, NULL}, .dw = {NULL, NULL},
-			.lf = {NULL, NULL}, .rg = {NULL, NULL},
-			.rest = {NULL, NULL}, .x = -1, .y = -1
+			.up = NULL, .dw = NULL,
+			.lf = NULL, .rg = NULL,
+			.rest = NULL, .x = -1, .y = -1
 			},
 		.e = {.img = NULL, .type = 'E', .status = 0, .x = -1, .y = -1},
 		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},

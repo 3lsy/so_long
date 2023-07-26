@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/11 22:03:39 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:24:39 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,27 @@
 # include <string.h>
 # include <mlx.h>
 
-# define WALL "./media/bluetorch.xpm"
-# define FREE "./media/redcarpet.xpm"
-# define COLLECT "./media/wall1.xpm"
-# define EXIT "./media/orange.xpm"
-# define PLAYER "./media/wall1.xpm"
+/*
+** Terrain
+*/
+
+# define WALL "./media/wall/purple_wall.xpm"
+# define R_WALL "./media/wall/purple_wall.xpm"
+# define L_WALL "./media/wall/purple_wall.xpm"
+# define IN_WALL "./media/wall/purple_wall.xpm"
+# define FREE  "./media/space/floor_1_v2.xpm"
+# define COLLECT "./media/collect/floor_with_coin.xpm"
+# define EXIT "./media/exit/exit_gray.xpm"
+# define EXIT_CLOSE "./media/exit/exit_gray.xpm"
+
+/*
+** Player
+*/
+
+# define D_PLAYER "./media/player/bu/front.xpm"
+# define U_PLAYER "./media/player/bu/back.xpm"
+# define L_PLAYER "./media/player/bu/left.xpm"
+# define R_PLAYER "./media/player/bu/right.xpm"
 
 # define E_CLOSE 131072
 # define SPRITE 42
@@ -70,11 +86,11 @@ typedef struct s_terrain {
 }	t_terrain;
 
 typedef struct s_player {
-	t_img		*up[2];
-	t_img		*dw[2];
-	t_img		*rg[2];
-	t_img		*lf[2];
-	t_img		*rest[2];
+	t_img		*up;
+	t_img		*dw;
+	t_img		*rg;
+	t_img		*lf;
+	t_img		*rest;
 	int			x;
 	int			y;
 }	t_player;
