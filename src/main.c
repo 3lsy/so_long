@@ -32,7 +32,8 @@ int	main(int ac, char **av)
 		verify_map();
 		init_graphics();
 		load_map();
-		ft_plot_map();
+        load_player();
+		game();
 	}
 	else
 		usage();
@@ -57,9 +58,9 @@ t_sl	*ft_sl(void)
 		.p = {
 			.up = NULL, .dw = NULL,
 			.lf = NULL, .rg = NULL,
-			.rest = NULL, .x = -1, .y = -1
+			.x = -1, .y = -1
 			},
-		.e = {.img = NULL, .type = 'E', .status = 0, .x = -1, .y = -1},
+		.e = {.img = {NULL, NULL}, .type = 'E', .status = 0, .x = -1, .y = -1},
 		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},
 	};
 
@@ -81,8 +82,10 @@ static __attribute__((destructor)) void	sl_destructor(void)
 			j = 0;
 			while (j < s->map_width)
 			{
-				if (s->map[i][j].img)
-					mlx_destroy_image(s->g.mlx, s->map[i][j].img);
+				if (s->map[i][j].img[0])
+					mlx_destroy_image(s->g.mlx, s->map[i][j].img[0]);
+                if (s->map[i][j].img[1])
+					mlx_destroy_image(s->g.mlx, s->map[i][j].img[1]);
 				j++;
 			}
 			free(s->map[i]);

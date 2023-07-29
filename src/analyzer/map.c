@@ -109,7 +109,7 @@ void	verify_line(char *line, int fd)
 	verify_dimensions(line, ft_sl()->map_width, fd);
 	while (i < ft_sl()->map_width)
 	{
-		verify_item(line, i, ft_sl()->map_height, fd);
+		verify_item(line, i, ft_sl()->map_height - 1, fd);
 		i++;
 	}
 }

@@ -35,15 +35,17 @@ DIRSRC      =   ./src/
 DIRFOO      :=  $(DIRSRC)analyzer/
 DIRLOAD		:=	$(DIRSRC)load/
 DIRGRAPHICS	:=	$(DIRSRC)graphics/
+DIRGAME		:=	$(DIRSRC)game/
 
-DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS)
+DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS) $(DIRGAME)
 
 SRC         =   main.c
 FOO         =	analyzer.c map.c
 LOAD		=	load.c
 GRAPHICS	=	graphics.c image.c
+GAME		=	game.c
 
-SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS)
+SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS) $(GAME)
 
 #***************** DEPS ******************#
 

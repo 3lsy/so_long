@@ -78,7 +78,7 @@ typedef struct s_img
 }	t_img;
 
 typedef struct s_terrain {
-	t_img		*img;
+	t_img		*img[2];
 	char		type;
 	int			x;
 	int			y;
@@ -90,7 +90,6 @@ typedef struct s_player {
 	t_img		*dw;
 	t_img		*rg;
 	t_img		*lf;
-	t_img		*rest;
 	int			x;
 	int			y;
 }	t_player;
@@ -148,6 +147,7 @@ void	exit_error_gnl(char *e);
 */
 
 void	load_map(void);
+void    load_player(void);
 
 /*
 **	Graphics
@@ -155,5 +155,11 @@ void	load_map(void);
 
 void	init_graphics(void);
 void		ft_plot_map(void);
+
+/*
+**  Game
+*/
+
+void    game(void);
 
 #endif

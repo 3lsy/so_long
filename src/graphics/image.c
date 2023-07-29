@@ -25,14 +25,12 @@ void	ft_plot_map(void)
 		j = 0;
 		while (j < s->map_width)
 		{
-			mlx_put_image_to_window(s->g.mlx, s->g.win, s->map[i][j].img,
-									j * SPRITE, i * SPRITE);
-			if (i == s->p.x && j == s->p.y)
-				mlx_put_image_to_window(s->g.mlx, s->g.win, s->p.dw,
-										j * SPRITE, i * SPRITE);
-			j++;
+          usleep(3000);//
+          mlx_put_image_to_window(s->g.mlx, s->g.win, s->map[i][j].img[s->map[i][j].status],
+                                  j * SPRITE, i * SPRITE);
+          j++;
 		}
 		i++;
 	}
-	mlx_loop(ft_sl()->g.mlx);
+	
 }
