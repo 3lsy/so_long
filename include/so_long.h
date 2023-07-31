@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:24:39 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:33:36 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define R_WALL "./media/wall/purple_wall.xpm"
 # define L_WALL "./media/wall/purple_wall.xpm"
 # define IN_WALL "./media/wall/purple_wall.xpm"
-# define FREE  "./media/space/floor_1_v2.xpm"
+# define FREE  "./media/space/floor.xpm"
 # define COLLECT "./media/collect/floor_with_coin.xpm"
 # define EXIT "./media/exit/exit_gray.xpm"
 # define EXIT_CLOSE "./media/exit/exit_gray.xpm"
@@ -40,10 +40,10 @@
 ** Player
 */
 
-# define D_PLAYER "./media/player/bu/front.xpm"
-# define U_PLAYER "./media/player/bu/back.xpm"
-# define L_PLAYER "./media/player/bu/left.xpm"
-# define R_PLAYER "./media/player/bu/right.xpm"
+# define D_PLAYER "./media/player/front.xpm"
+# define U_PLAYER "./media/player/back.xpm"
+# define L_PLAYER "./media/player/left.xpm"
+# define R_PLAYER "./media/player/right.xpm"
 
 # define E_CLOSE 131072
 # define SPRITE 42
