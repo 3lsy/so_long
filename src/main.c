@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:13:41 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:43:16 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ t_sl	*ft_sl(void)
 		.fd = 0,
 		.collects = 0,
 		.collected = 0,
+		.movements = 0,
 		.map_height = 0,
 		.map_width = 0,
 		.map = NULL,

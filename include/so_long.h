@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/31 21:33:36 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:42:37 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_sl {
 
 	int			collects;
 	int			collected;
+	int			movements;
 	int			map_height;
 	int			map_width;
 

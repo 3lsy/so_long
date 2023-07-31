@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/31 21:40:15 by echavez-          #+#    #+#             */
+/*   Updated: 2023/07/31 22:21:14 by echavez-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
+
 /*
 void	destroy_player(void)
 {
@@ -11,6 +23,7 @@ void	destroy_player(void)
 	s->p.img = NULL;
 }
 */
+
 void	draw_player(char c)
 {
 	t_sl	*s;
@@ -34,6 +47,8 @@ void	interact(void)
 	t_sl  *s;
 
 	s = ft_sl();
+	s->movements++;
+	printf("Movements: {%d}\n", s->movements);
 	printf("Arrived at {%c}\n", s->map[s->p.y][s->p.x].type);
 	if (s->collected == s->collects && s->map[s->p.y][s->p.x].type == 'E')
 	{
