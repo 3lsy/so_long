@@ -3,7 +3,7 @@ static char *orange[] = {
 /* columns rows colors chars-per-pixel */
 "64 64 4 1 ",
 "  c #040204",
-". c #CC4E0C",
+". c #66422d",
 "X c None",
 "o c black",
 /* pixels */

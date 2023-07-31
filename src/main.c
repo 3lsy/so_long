@@ -32,7 +32,7 @@ int	main(int ac, char **av)
 		verify_map();
 		init_graphics();
 		load_map();
-        load_player();
+		load_player();
 		game();
 	}
 	else
@@ -52,6 +52,7 @@ t_sl	*ft_sl(void)
 		.filename = NULL,
 		.fd = 0,
 		.collects = 0,
+		.collected = 0,
 		.map_height = 0,
 		.map_width = 0,
 		.map = NULL,
@@ -59,7 +60,7 @@ t_sl	*ft_sl(void)
 			.up = NULL, .dw = NULL,
 			.lf = NULL, .rg = NULL,
 			.x = -1, .y = -1
-			},
+		},
 		.e = {.img = {NULL, NULL}, .type = 'E', .status = 0, .x = -1, .y = -1},
 		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},
 	};

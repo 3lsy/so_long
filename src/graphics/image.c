@@ -12,6 +12,23 @@
 
 #include "so_long.h"
 
+void	draw_img(int x, int y, t_img *img)
+{
+	t_sl	*s;
+
+	s = ft_sl();
+	mlx_put_image_to_window(s->g.mlx, s->g.win, img, x, y);
+}
+
+void	draw_element(int i, int j)
+{
+	t_sl	*s;
+
+	s = ft_sl();
+	mlx_put_image_to_window(s->g.mlx, s->g.win,
+			s->map[i][j].img[s->map[i][j].status], j * SPRITE, i * SPRITE);
+}
+
 void	ft_plot_map(void)
 {
 	t_sl	*s;
@@ -26,11 +43,9 @@ void	ft_plot_map(void)
 		while (j < s->map_width)
 		{
           usleep(3000);//
-          mlx_put_image_to_window(s->g.mlx, s->g.win, s->map[i][j].img[s->map[i][j].status],
-                                  j * SPRITE, i * SPRITE);
+		  draw_element(i, j);
           j++;
 		}
 		i++;
 	}
-	
 }

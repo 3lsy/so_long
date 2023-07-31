@@ -12,29 +12,6 @@
 
 #include "so_long.h"
 
-int	exit_win(__attribute__((unused)) void *p)
-{
-	exit(EXIT_SUCCESS);
-	return (1);
-}
-
-int	key_win(int key, __attribute__((unused)) void *p)
-{
-	if (key == 0xFF1B)
-		exit_win(NULL);
-	else if (key == 65361)
-		printf("izquierda\n");
-	else if (key == 65363)
-		printf("derecha\n");
-	else if (key == 65362)
-		printf("arriba\n");
-	else if (key == 65364)
-		printf("abajo\n");
-	else
-		printf("%d\n", key);
-	return (0);
-}
-
 void	init_graphics(void)
 {
 	t_sl	*s;
@@ -53,6 +30,4 @@ void	init_graphics(void)
 			s->map_height * SPRITE, "so_long");
 	if (!s->g.win)
 		exit_error("minilibx window failed\n");
-	mlx_hook(s->g.win, 33, E_CLOSE, exit_win, 0);
-	mlx_key_hook(s->g.win, key_win, s->g.mlx);
 }

@@ -43,7 +43,7 @@ SRC         =   main.c
 FOO         =	analyzer.c map.c
 LOAD		=	load.c
 GRAPHICS	=	graphics.c image.c
-GAME		=	game.c
+GAME		=	game.c movement.c
 
 SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS) $(GAME)
 

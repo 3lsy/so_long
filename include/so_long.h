@@ -88,8 +88,8 @@ typedef struct s_terrain {
 typedef struct s_player {
 	t_img		*up;
 	t_img		*dw;
-	t_img		*rg;
 	t_img		*lf;
+	t_img		*rg;
 	int			x;
 	int			y;
 }	t_player;
@@ -114,6 +114,7 @@ typedef struct s_sl {
 	int			fd;
 
 	int			collects;
+	int			collected;
 	int			map_height;
 	int			map_width;
 
@@ -154,12 +155,22 @@ void    load_player(void);
 */
 
 void	init_graphics(void);
-void		ft_plot_map(void);
+void	ft_plot_map(void);
+void	draw_element(int i, int j);
+void	draw_img(int x, int y, t_img *img);
 
 /*
 **  Game
 */
 
 void    game(void);
+int		exit_win(__attribute__((unused)) void *p);
+int		key_win(int key, __attribute__((unused)) void *p);
+void	draw_player(char c);
+void	destroy_player(void);
+void	up(void);
+void	left(void);
+void	down(void);
+void	right(void);
 
 #endif

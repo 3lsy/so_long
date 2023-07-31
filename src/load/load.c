@@ -14,30 +14,30 @@
 
 void    load_player(void)
 {
-  int   size;
-  t_sl  *s;
+	int   size;
+	t_sl  *s;
 
-  s = ft_sl();
-  s->p.up = mlx_xpm_file_to_image(s->g.mlx, U_PLAYER, &size, &size);
-  if (!s->p.up)
-    exit_error("minilibx img failed\n");
-  s->p.dw = mlx_xpm_file_to_image(s->g.mlx, D_PLAYER, &size, &size);
-  if (!s->p.dw)
-    exit_error("minilibx img failed\n");
-  s->p.lf = mlx_xpm_file_to_image(s->g.mlx, L_PLAYER, &size, &size);
-  if (!s->p.lf)
-    exit_error("minilibx img failed\n");
-  s->p.rg = mlx_xpm_file_to_image(s->g.mlx, R_PLAYER, &size, &size);
-  if (!s->p.rg)
-    exit_error("minilibx img failed\n");
-  s->p.up->width = SPRITE;
-  s->p.up->height = SPRITE;
-  s->p.dw->width = SPRITE;
-  s->p.dw->height = SPRITE;
-  s->p.lf->width = SPRITE;
-  s->p.lf->height = SPRITE;
-  s->p.rg->width = SPRITE;
-  s->p.rg->height = SPRITE;
+	s = ft_sl();
+	s->p.up = mlx_xpm_file_to_image(s->g.mlx, U_PLAYER, &size, &size);
+	if (!s->p.up)
+		exit_error("minilibx img failed\n");
+	s->p.dw = mlx_xpm_file_to_image(s->g.mlx, D_PLAYER, &size, &size);
+	if (!s->p.dw)
+		exit_error("minilibx img failed\n");
+	s->p.lf = mlx_xpm_file_to_image(s->g.mlx, L_PLAYER, &size, &size);
+	if (!s->p.lf)
+		exit_error("minilibx img failed\n");
+	s->p.rg = mlx_xpm_file_to_image(s->g.mlx, R_PLAYER, &size, &size);
+	if (!s->p.rg)
+		exit_error("minilibx img failed\n");
+	s->p.up->width = SPRITE;
+	s->p.up->height = SPRITE;
+	s->p.dw->width = SPRITE;
+	s->p.dw->height = SPRITE;
+	s->p.lf->width = SPRITE;
+	s->p.lf->height = SPRITE;
+	s->p.rg->width = SPRITE;
+	s->p.rg->height = SPRITE;
 }
 
 void	set_space(t_terrain *tmp, char c)
@@ -58,8 +58,8 @@ void	set_space(t_terrain *tmp, char c)
 		tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, WALL, &size, &size);
 	else if (c == 'C')
       {
-		tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, COLLECT, &size, &size);
-        tmp->img[1] = mlx_xpm_file_to_image(s->g.mlx, FREE, &size, &size);
+        tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, FREE, &size, &size);
+		tmp->img[1] = mlx_xpm_file_to_image(s->g.mlx, COLLECT, &size, &size);
         if (!tmp->img[1])
           exit_error("minilibx img failed\n");
         tmp->img[1]->width = SPRITE;
