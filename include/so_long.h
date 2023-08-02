@@ -25,6 +25,20 @@
 # include <mlx_int.h>
 
 /*
+** Keys
+*/
+
+# define W 119
+# define A 97
+# define S 114
+# define D 115
+
+# define U_ARROW 65362
+# define D_ARROW 65364
+# define L_ARROW 65361
+# define R_ARROW 65363
+
+/*
 ** Terrain
 */
 
