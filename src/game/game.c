@@ -22,16 +22,14 @@ int	key_win(int key, __attribute__((unused)) void *p)
 {
 	if (key == 0xFF1B)
 		exit_win(NULL);
-	else if (key == 65361)
+	else if (key == L_ARROW || key == A)
 		left();
-	else if (key == 65363)
+	else if (key == R_ARROW || key == D)
 		right();
-	else if (key == 65362)
+	else if (key == U_ARROW || key == W)
 		up();
-	else if (key == 65364)
+	else if (key == D_ARROW || key == S)
 		down();
-	else
-		ft_putnbr_fd(key, 1);
 	return (0);
 }
 
