@@ -63,7 +63,7 @@ t_sl	*ft_sl(void)
 	return (&x);
 }
 
-static __attribute__((destructor)) void	sl_destructor(void)
+static __attribute__((destructor)) void	sl_destruct0r(void)
 {
 	t_sl	*s;
 	int		i;
@@ -92,11 +92,9 @@ static __attribute__((destructor)) void	sl_destructor(void)
 	}
 }
 
-static __attribute__((destructor)) void	sl_destructor(void)
+static __attribute__((destructor)) void	sl_d3structor(void)
 {
 	t_sl	*s;
-	int		i;
-	int		j;
 
 	s = ft_sl();
 	if (s->g.win)

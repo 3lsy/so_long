@@ -149,7 +149,7 @@ void	read_map(void);
 void	verify_map(void);
 void	verify_wall(char *line, int size, int fd, int row);
 void	verify_line(char *line, int fd);
-void	exit_error_gnl(char *e);
+void	exit_error_gnl(char *e, char *line);
 
 /*
 **  Load
@@ -167,6 +167,7 @@ void	init_graphics(void);
 void	ft_plot_map(void);
 void	draw_element(int i, int j);
 void	draw_img(int x, int y, t_img *img);
+void	draw_player(char c);
 
 /*
 **  Game
@@ -176,8 +177,7 @@ void    game(void);
 int		exit_win(__attribute__((unused)) void *p);
 int		key_win(int key, __attribute__((unused)) void *p);
 int		key_esc(int key, __attribute__((unused)) void *p);
-void	draw_player(char c);
-void	destroy_player(void);
+void	player_interact(char c);
 void	up(void);
 void	left(void);
 void	down(void);

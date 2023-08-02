@@ -62,8 +62,9 @@ void	verify_map(void)
 	close(fd);
 }
 
-void	exit_error_gnl(char *e)
+void	exit_error_gnl(char *e, char *line)
 {
+	free(line);
 	ft_perror("Error\n", EXIT_FAILURE);
 	ft_get_next_line(-503);
 	exit(ft_perror(e, EXIT_FAILURE));

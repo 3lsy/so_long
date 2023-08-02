@@ -12,10 +12,10 @@
 
 #include "so_long.h"
 
-void    load_player(void)
+void	load_player(void)
 {
-	int   size;
-	t_sl  *s;
+	int		size;
+	t_sl	*s;
 
 	s = ft_sl();
 	s->p.up = mlx_xpm_file_to_image(s->g.mlx, U_PLAYER, &size, &size);
@@ -74,13 +74,9 @@ void	load_map(void)
 	i = 0;
 	while (line)
 	{
-		ft_putendl(line);
 		ft_sl()->map[i] = malloc(sizeof(t_terrain) * (ft_sl()->map_width + 1));
 		if (!ft_sl()->map[i])
-          {
-            free(line);
-			exit_error_gnl("Map couldn't be allocated");
-          }
+			exit_error_gnl("Map couldn't be allocated", line);
 		load_line(line, i++);
 		free(line);
 		line = ft_get_next_line(fd);

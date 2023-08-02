@@ -12,6 +12,24 @@
 
 #include "so_long.h"
 
+void	draw_player(char c)
+{
+	t_sl	*s;
+	t_img	*img;
+
+	img = NULL;
+	s = ft_sl();
+	if (c == 'u')
+		img = s->p.up;
+	else if (c == 'd')
+		img = s->p.dw;
+	else if (c == 'l')
+		img = s->p.lf;
+	else if (c == 'r')
+		img = s->p.rg;
+	draw_img(s->p.x * SPRITE, s->p.y * SPRITE, img);
+}
+
 void	draw_img(int x, int y, t_img *img)
 {
 	t_sl	*s;
