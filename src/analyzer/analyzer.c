@@ -60,32 +60,14 @@ void	verify_map(void)
 		free(line);
 	}
 	close(fd);
+	if (!ft_sl()->map_height)
+		exit_error("Empty map!\n");
 }
 
-void	exit_error_gnl(char *e)
+void	exit_error_gnl(char *e, char *line)
 {
+	free(line);
 	ft_perror("Error\n", EXIT_FAILURE);
 	ft_get_next_line(-503);
 	exit(ft_perror(e, EXIT_FAILURE));
 }
-
-/*
-void	read_map(void)
-{
-	char	*line;
-	int		fd;
-
-	fd = open(ft_sl()->filename, O_RDONLY);
-	if (fd < 0)
-		exit_error(strerror(errno));
-	line = ft_get_next_line(fd);
-	while (line)
-	{
-		ft_putendl(line);
-		free(line);
-		line = ft_get_next_line(fd);
-	}
-	if (line)
-		free(line);
-}
-*/

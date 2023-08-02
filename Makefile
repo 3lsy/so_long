@@ -6,7 +6,7 @@
 #    By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/25 11:47:33 by echavez-          #+#    #+#              #
-#    Updated: 2023/07/09 18:36:09 by echavez-         ###   ########.fr        #
+#    Updated: 2023/08/02 22:14:31 by echavez-         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -35,15 +35,17 @@ DIRSRC      =   ./src/
 DIRFOO      :=  $(DIRSRC)analyzer/
 DIRLOAD		:=	$(DIRSRC)load/
 DIRGRAPHICS	:=	$(DIRSRC)graphics/
+DIRGAME		:=	$(DIRSRC)game/
 
-DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS)
+DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS) $(DIRGAME)
 
 SRC         =   main.c
 FOO         =	analyzer.c map.c
-LOAD		=	load.c
-GRAPHICS	=	graphics.c
+LOAD		=	load.c set.c
+GRAPHICS	=	graphics.c image.c
+GAME		=	game.c movement.c collect.c
 
-SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS)
+SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS) $(GAME)
 
 #***************** DEPS ******************#
 
@@ -65,7 +67,7 @@ ifdef FLAGS
 CFLAGS      =
     endif
     ifeq ($(FLAGS), debug)
-CFLAGS      =   -Wall -Wextra -Werror -ansi -pedantic -g
+CFLAGS      =   -Wall -Wextra -Werror -ansi -pedantic -g -fsanitize=address
     endif
 else
 CFLAGS      =   -Wall -Wextra -Werror

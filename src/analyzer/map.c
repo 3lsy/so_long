@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/09 17:53:07 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:24:44 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ void	verify_wall(char *line, int size, int fd, int row)
 		err = 1;
 	if (err)
 	{
-		free(line);
-		ft_get_next_line(-503);
 		close(fd);
-		exit_error_gnl("Missing wall on map border\n");
+		exit_error_gnl("Missing wall on map border!\n", line);
 	}
 }
 
@@ -41,10 +39,8 @@ static void	verify_dimensions(char *line, int size, int fd)
 {
 	if (line && size != (int)ft_strlen(line))
 	{
-		ft_putendl(line);
-		free(line);
 		close(fd);
-		exit_error_gnl("Inconsistent map dimensions\n");
+		exit_error_gnl("Inconsistent map dimensions!\n", line);
 	}
 }
 
@@ -60,7 +56,7 @@ static void	set_element(char *line, int x, int y, int fd)
 	int	*sly;
 
 	if (line[x] != 'E' && line[x] != 'P')
-		exit_error_gnl(line);
+		exit_error_gnl("Set element error!\n", line);
 	slx = &(ft_sl()->p.x);
 	sly = &(ft_sl()->p.y);
 	if (line[x] == 'E')
@@ -70,15 +66,10 @@ static void	set_element(char *line, int x, int y, int fd)
 	}
 	if (*slx != -1)
 	{
-		ft_putendl(line);/////
 		close(fd);
 		if (line[x] == 'P')
-		{
-			free(line);
-			exit_error_gnl("There's more than one P\n");
-		}
-		free(line);
-		exit_error_gnl("There's more than one E");
+			exit_error_gnl("There's more than one P!\n", line);
+		exit_error_gnl("There's more than one E!\n", line);
 	}
 	*slx = x;
 	*sly = y;
@@ -92,10 +83,8 @@ void	verify_item(char *line, int x, int y, int fd)
 		set_element(line, x, y, fd);
 	else if (line[x] != '0' && line[x] != '1')
 	{
-		ft_putendl(line);
 		close(fd);
-		free(line);
-		exit_error_gnl("Unrecognized character in map\n");
+		exit_error_gnl("Unrecognized character in map!\n", line);
 	}
 }
 
@@ -109,7 +98,7 @@ void	verify_line(char *line, int fd)
 	verify_dimensions(line, ft_sl()->map_width, fd);
 	while (i < ft_sl()->map_width)
 	{
-		verify_item(line, i, ft_sl()->map_height, fd);
+		verify_item(line, i, ft_sl()->map_height - 1, fd);
 		i++;
 	}
 }
