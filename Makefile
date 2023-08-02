@@ -67,7 +67,7 @@ ifdef FLAGS
 CFLAGS      =
     endif
     ifeq ($(FLAGS), debug)
-CFLAGS      =   -Wall -Wextra -Werror -ansi -pedantic -g
+CFLAGS      =   -Wall -Wextra -Werror -ansi -pedantic -g -fsanitize=address
     endif
 else
 CFLAGS      =   -Wall -Wextra -Werror

@@ -60,6 +60,8 @@ void	verify_map(void)
 		free(line);
 	}
 	close(fd);
+	if (!ft_sl()->map_height)
+		exit_error("Empty map!\n");
 }
 
 void	exit_error_gnl(char *e, char *line)

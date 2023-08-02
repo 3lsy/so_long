@@ -22,6 +22,7 @@
 # include <errno.h>
 # include <string.h>
 # include <mlx.h>
+# include <mlx_int.h>
 
 /*
 ** Terrain
@@ -72,17 +73,6 @@
 **	     1 - Active
 **       0 - Inactive
 */
-
-typedef struct s_img
-{
-	void		*img;
-	int			bpp;
-	int			bpl;
-	int			endian;
-	char		*data;
-	int			width;
-	int			height;
-}	t_img;
 
 typedef struct s_terrain {
 	t_img		*img[2];

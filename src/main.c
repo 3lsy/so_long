@@ -70,26 +70,26 @@ static __attribute__((destructor)) void	sl_destruct0r(void)
 	int		j;
 
 	s = ft_sl();
-	if (s->map != NULL)
+	i = 0;
+	while (s->map != NULL && i < s->map_height)
 	{
-		i = 0;
-		while (i < s->map_height)
+		j = 0;
+		while (j < s->map_width)
 		{
-			j = 0;
-			while (j < s->map_width)
+			free(s->map[i][j].img[0]->image);
+			free(s->map[i][j].img[0]);
+			if (s->map[i][j].img[1])
 			{
-				if (s->map[i][j].img[0])
-					mlx_destroy_image(s->g.mlx, s->map[i][j].img[0]);
-				if (s->map[i][j].img[1])
-					mlx_destroy_image(s->g.mlx, s->map[i][j].img[1]);
-				j++;
+				free(s->map[i][j].img[1]->image);
+				free(s->map[i][j].img[1]);
 			}
-			free(s->map[i]);
-			i++;
+			j++;
 		}
-		free(s->map);
-		s->map = NULL;
+		free(s->map[i++]);
 	}
+	if (s->map)
+		free(s->map);
+	s->map = NULL;
 }
 
 static __attribute__((destructor)) void	sl_d3structor(void)
@@ -104,6 +104,10 @@ static __attribute__((destructor)) void	sl_d3structor(void)
 	}
 	if (s->g.mlx)
 	{
+		mlx_destroy_image(s->g.mlx, s->p.up);
+		mlx_destroy_image(s->g.mlx, s->p.dw);
+		mlx_destroy_image(s->g.mlx, s->p.lf);
+		mlx_destroy_image(s->g.mlx, s->p.rg);
 		mlx_destroy_display(s->g.mlx);
 		free(s->g.mlx);
 	}

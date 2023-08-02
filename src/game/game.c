@@ -31,7 +31,7 @@ int	key_win(int key, __attribute__((unused)) void *p)
 	else if (key == 65364)
 		down();
 	else
-		printf("%d\n", key);
+		ft_putnbr_fd(key, 1);
 	return (0);
 }
 
