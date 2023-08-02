@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 21:59:55 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/02 22:15:57 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:32:10 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	set_wall(t_terrain *tmp, int size, t_sl *s)
 {
 	char	*i;
 
-	if (tmp->x == 0 && tmp->y == 0)// top left
+	if (tmp->x == 0 && tmp->y == 0)
 		i = TOP_L_CORNER;
-	else if (tmp->x == s->map_width - 1 && tmp->y == 0)// top right
+	else if (tmp->x == s->map_width - 1 && tmp->y == 0)
 		i = TOP_R_CORNER;
-	else if (tmp->x == 0 && tmp->y != s->map_height - 1) // left wall
+	else if (tmp->x == 0 && tmp->y != s->map_height - 1)
 		i = L_WALL;
-	else if (tmp->x == s->map_width - 1 && tmp->y != s->map_height - 1) // right wall
+	else if (tmp->x == s->map_width - 1 && tmp->y != s->map_height - 1)
 		i = R_WALL;
-	else if (tmp->y == 0 || tmp->y == s->map_height - 1)//top bottom walls
+	else if (tmp->y == 0 || tmp->y == s->map_height - 1)
 		i = WALL;
-	else //towers
+	else
 		i = TOWER;
 	tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, i, &size, &size);
 }
@@ -53,7 +53,7 @@ void	set_space(t_terrain *tmp, char c)
 	size = 0;
 	tmp->status = (c == 'C');
 	tmp->type = c;
-    tmp->img[1] = NULL;
+	tmp->img[1] = NULL;
 	if (c == 'P' || c == '0')
 	{
 		tmp->type = '0';

@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/02 22:15:26 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:37:29 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@
 typedef struct s_img
 {
 	void		*img;
-	int			bpp;//
-	int			bpl;//
-	int			endian;//
-	char		*data;//
+	int			bpp;
+	int			bpl;
+	int			endian;
+	char		*data;
 	int			width;
 	int			height;
 }	t_img;
@@ -156,7 +156,7 @@ void	exit_error_gnl(char *e, char *line);
 */
 
 void	load_map(void);
-void    load_player(void);
+void	load_player(void);
 void	set_space(t_terrain *tmp, char c);
 
 /*
@@ -173,7 +173,7 @@ void	draw_player(char c);
 **  Game
 */
 
-void    game(void);
+void	game(void);
 int		exit_win(__attribute__((unused)) void *p);
 int		key_win(int key, __attribute__((unused)) void *p);
 int		key_esc(int key, __attribute__((unused)) void *p);
