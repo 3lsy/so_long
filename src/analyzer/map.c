@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 00:08:56 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/09 17:53:07 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:24:44 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ static void	set_element(char *line, int x, int y, int fd)
 	}
 	if (*slx != -1)
 	{
-		ft_putendl(line);/////
 		close(fd);
 		if (line[x] == 'P')
 		{
