@@ -6,23 +6,11 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/31 21:43:16 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 23:06:38 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	usage(void)
-{
-	ft_putendl("Usage: ./so_long <map.ber>");
-	ft_putendl("  map.ber: A map which contains:");
-	ft_putendl("    0 : [valid path]  Empty space");
-	ft_putendl("    1 : [100% closed] Wall");
-	ft_putendl("    C : [1 minimum]   Collectible");
-	ft_putendl("    E : [unique]      Exit");
-	ft_putendl("    P : [unique]      Player (starting pos)");
-	exit(1);
-}
 
 int	main(int ac, char **av)
 {
@@ -34,10 +22,16 @@ int	main(int ac, char **av)
 		load_map();
 		load_player();
 		game();
+		return (0);
 	}
-	else
-		usage();
-	return (0);
+	ft_putendl("Usage: ./so_long <map.ber>");
+	ft_putendl("  map.ber: A map which contains:");
+	ft_putendl("    0 : [valid path]  Empty space");
+	ft_putendl("    1 : [100% closed] Wall");
+	ft_putendl("    C : [1 minimum]   Collectible");
+	ft_putendl("    E : [unique]      Exit");
+	ft_putendl("    P : [unique]      Player (starting pos)");
+	return (1);
 }
 
 void	exit_error(char *e)
@@ -58,10 +52,10 @@ t_sl	*ft_sl(void)
 		.map_width = 0,
 		.map = NULL,
 		.p = {
-			.up = NULL, .dw = NULL,
-			.lf = NULL, .rg = NULL,
-			.x = -1, .y = -1
-		},
+		.up = NULL, .dw = NULL,
+		.lf = NULL, .rg = NULL,
+		.x = -1, .y = -1
+	},
 		.e = {.img = {NULL, NULL}, .type = 'E', .status = 0, .x = -1, .y = -1},
 		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},
 	};
@@ -72,8 +66,8 @@ t_sl	*ft_sl(void)
 static __attribute__((destructor)) void	sl_destructor(void)
 {
 	t_sl	*s;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	s = ft_sl();
 	if (s->map != NULL)
@@ -86,7 +80,7 @@ static __attribute__((destructor)) void	sl_destructor(void)
 			{
 				if (s->map[i][j].img[0])
 					mlx_destroy_image(s->g.mlx, s->map[i][j].img[0]);
-                if (s->map[i][j].img[1])
+				if (s->map[i][j].img[1])
 					mlx_destroy_image(s->g.mlx, s->map[i][j].img[1]);
 				j++;
 			}
@@ -96,6 +90,15 @@ static __attribute__((destructor)) void	sl_destructor(void)
 		free(s->map);
 		s->map = NULL;
 	}
+}
+
+static __attribute__((destructor)) void	sl_destructor(void)
+{
+	t_sl	*s;
+	int		i;
+	int		j;
+
+	s = ft_sl();
 	if (s->g.win)
 	{
 		mlx_clear_window(s->g.mlx, s->g.win);

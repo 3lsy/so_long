@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:43:26 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:51:18 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:00:25 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,6 @@ void    load_player(void)
 	s->p.lf->height = SPRITE;
 	s->p.rg->width = SPRITE;
 	s->p.rg->height = SPRITE;
-}
-
-void	set_space(t_terrain *tmp, char c)
-{
-	int		size;
-	t_sl	*s;
-
-	s = ft_sl();
-	tmp->status = (c == 'C');
-	tmp->type = c;
-    tmp->img[1] = NULL;
-	if (c == 'P' || c == '0')
-	{
-		tmp->type = '0';
-		tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, FREE, &size, &size);
-	}
-	else if (c == '1')
-		tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, WALL, &size, &size);
-	else if (c == 'C')
-      {
-        tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, FREE, &size, &size);
-		tmp->img[1] = mlx_xpm_file_to_image(s->g.mlx, COLLECT, &size, &size);
-        if (!tmp->img[1])
-          exit_error("minilibx img failed\n");
-        tmp->img[1]->width = SPRITE;
-        tmp->img[1]->height = SPRITE;
-
-      }
-	else
-      {
-		tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, EXIT_CLOSE, &size, &size);
-        tmp->img[1] = mlx_xpm_file_to_image(s->g.mlx, EXIT, &size, &size);
-        if (!tmp->img[1])
-          exit_error("minilibx img failed\n");
-        tmp->img[1]->width = SPRITE;
-        tmp->img[1]->height = SPRITE;
-
-      }
-	if (!tmp->img[0])
-		exit_error("minilibx img failed\n");
-	tmp->img[0]->width = SPRITE;
-	tmp->img[0]->height = SPRITE;
 }
 
 void	load_line(char *line, int i)

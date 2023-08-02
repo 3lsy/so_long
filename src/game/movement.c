@@ -6,23 +6,11 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 21:40:15 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/31 22:21:14 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:57:52 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/*
-void	destroy_player(void)
-{
-	t_sl	*s;
-
-	s = ft_sl();
-	if (s->p.img)
-		mlx_destroy_image(s->g.mlx, s->p.img);
-	s->p.img = NULL;
-}
-*/
 
 void	draw_player(char c)
 {
@@ -42,23 +30,42 @@ void	draw_player(char c)
 	draw_img(s->p.x * SPRITE, s->p.y * SPRITE, img);
 }
 
-void	interact(void)
+void	interact(char c)
 {
-	t_sl  *s;
+	t_sl	*s;
+	char	*nb;
 
 	s = ft_sl();
 	s->movements++;
-	printf("Movements: {%d}\n", s->movements);
-	printf("Arrived at {%c}\n", s->map[s->p.y][s->p.x].type);
-	if (s->collected == s->collects && s->map[s->p.y][s->p.x].type == 'E')
-	{
-		printf("SUCCESS ! YOU WON\n");//
-	}
-	else if (s->map[s->p.y][s->p.x].type == 'C')
+	nb = ft_itoa(s->movements);
+	if (!nb)
+		exit_error(strerror(errno));
+	draw_element(s->map_height - 1, 2);
+	mlx_string_put(s->g.mlx, s->g.win, SPRITE * 2 + 10,
+				   s->map_height * SPRITE - 15, 0xFFFFFF, nb);
+	free(nb);
+	if (s->map[s->p.y][s->p.x].type == 'C')
 	{
 		s->collected++;
 		s->map[s->p.y][s->p.x].status = 0;
-		printf("Collected a collectible\n");
+		printf("Collected a collectible\n");//
+	}
+	if (s->map[s->p.y][s->p.x].type != 'E')
+		s->map[s->p.y][s->p.x].type = 'P';
+	draw_player(c);
+	if (s->collected == s->collects)
+	{
+		s->map[s->e.y][s->e.x].status = 1;
+		draw_element(s->e.y, s->e.x);
+		draw_player(c);
+		if (s->map[s->p.y][s->p.x].type == 'E')
+		{
+			mlx_set_font(s->g.mlx, s->g.win, "rk24");
+			mlx_string_put(s->g.mlx, s->g.win, SPRITE,
+						   35, 0xFFFFFF, "YOU WON !");
+			mlx_key_hook(s->g.win, key_esc, s->g.mlx);
+			mlx_hook(s->g.win, 33, E_CLOSE, exit_win, 0);
+		}
 	}
 }
 
@@ -73,10 +80,7 @@ void	up(void)
 		if (s->map[s->p.y][s->p.x].type != 'E')
 			s->map[s->p.y][s->p.x].type = '0';
 		s->p.y--;
-		interact();
-		if (s->map[s->p.y][s->p.x].type != 'E')
-			s->map[s->p.y][s->p.x].type = 'P';
-		draw_player('u');
+		interact('u');
 	}
 }
 
@@ -91,10 +95,7 @@ void	down(void)
 		if (s->map[s->p.y][s->p.x].type != 'E')
 			s->map[s->p.y][s->p.x].type = '0';
 		s->p.y++;
-		interact();
-		if (s->map[s->p.y][s->p.x].type != 'E')
-			s->map[s->p.y][s->p.x].type = 'P';
-		draw_player('d');
+		interact('d');
 	}
 }
 
@@ -109,10 +110,7 @@ void	left(void)
 		if (s->map[s->p.y][s->p.x].type != 'E')
 			s->map[s->p.y][s->p.x].type = '0';
 		s->p.x--;
-		interact();
-		if (s->map[s->p.y][s->p.x].type != 'E')
-			s->map[s->p.y][s->p.x].type = 'P';
-		draw_player('l');
+		interact('l');
 	}
 }
 
@@ -127,9 +125,6 @@ void	right(void)
 		if (s->map[s->p.y][s->p.x].type != 'E')
 			s->map[s->p.y][s->p.x].type = '0';
 		s->p.x++;
-		interact();
-		if (s->map[s->p.y][s->p.x].type != 'E')
-			s->map[s->p.y][s->p.x].type = 'P';
-		draw_player('r');
+		interact('r');
 	}
 }

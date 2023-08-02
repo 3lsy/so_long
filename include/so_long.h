@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/31 21:42:37 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:15:26 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,30 @@
 ** Terrain
 */
 
-# define WALL "./media/wall/purple_wall.xpm"
-# define R_WALL "./media/wall/purple_wall.xpm"
-# define L_WALL "./media/wall/purple_wall.xpm"
-# define IN_WALL "./media/wall/purple_wall.xpm"
 # define FREE  "./media/space/floor.xpm"
-# define COLLECT "./media/collect/floor_with_coin.xpm"
-# define EXIT "./media/exit/exit_gray.xpm"
-# define EXIT_CLOSE "./media/exit/exit_gray.xpm"
+# define COLLECT "./media/collect/collectible.xpm"
+# define EXIT "./media/exit/floor_ladder.xpm"
+# define EXIT_CLOSE "./media/exit/closed.xpm"
+
+/*
+** Wall
+*/
+
+# define WALL "./media/wall/wall.xpm"
+# define R_WALL "./media/wall/right_wall.xpm"
+# define L_WALL "./media/wall/left_wall.xpm"
+# define TOP_R_CORNER "./media/wall/top_right_corner.xpm"
+# define TOP_L_CORNER "./media/wall/top_left_corner.xpm"
+# define TOWER "./media/wall/tower.xpm"
 
 /*
 ** Player
 */
 
-# define D_PLAYER "./media/player/front.xpm"
-# define U_PLAYER "./media/player/back.xpm"
-# define L_PLAYER "./media/player/left.xpm"
-# define R_PLAYER "./media/player/right.xpm"
+# define D_PLAYER "./media/player/front_v2.xpm"
+# define U_PLAYER "./media/player/back_v2.xpm"
+# define L_PLAYER "./media/player/left_v2.xpm"
+# define R_PLAYER "./media/player/right_v2.xpm"
 
 # define E_CLOSE 131072
 # define SPRITE 42
@@ -150,6 +157,7 @@ void	exit_error_gnl(char *e);
 
 void	load_map(void);
 void    load_player(void);
+void	set_space(t_terrain *tmp, char c);
 
 /*
 **	Graphics
@@ -167,6 +175,7 @@ void	draw_img(int x, int y, t_img *img);
 void    game(void);
 int		exit_win(__attribute__((unused)) void *p);
 int		key_win(int key, __attribute__((unused)) void *p);
+int		key_esc(int key, __attribute__((unused)) void *p);
 void	draw_player(char c);
 void	destroy_player(void);
 void	up(void);

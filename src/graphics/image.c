@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 19:41:28 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:48:06 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:58:28 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	ft_plot_map(void)
 		j = 0;
 		while (j < s->map_width)
 		{
-          usleep(3000);//
 		  draw_element(i, j);
           j++;
 		}
