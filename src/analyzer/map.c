@@ -39,7 +39,6 @@ static void	verify_dimensions(char *line, int size, int fd)
 {
 	if (line && size != (int)ft_strlen(line))
 	{
-		ft_putendl(line);
 		close(fd);
 		exit_error_gnl("Inconsistent map dimensions!\n", line);
 	}
@@ -84,7 +83,6 @@ void	verify_item(char *line, int x, int y, int fd)
 		set_element(line, x, y, fd);
 	else if (line[x] != '0' && line[x] != '1')
 	{
-		ft_putendl(line);
 		close(fd);
 		exit_error_gnl("Unrecognized character in map!\n", line);
 	}
