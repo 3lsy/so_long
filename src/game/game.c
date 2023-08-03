@@ -48,7 +48,7 @@ void	game(void)
 	s->g.win = mlx_new_window(s->g.mlx, s->map_width * SPRITE,
 			s->map_height * SPRITE, "so_long");
 	if (!s->g.win)
-		exit_error("minilibx window failed\n");
+		exit_error("minilibx window failed");
 	ft_plot_map();
 	mlx_hook(s->g.win, 33, E_CLOSE, exit_win, 0);
 	mlx_key_hook(s->g.win, key_win, s->g.mlx);

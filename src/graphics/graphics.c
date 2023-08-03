@@ -25,7 +25,7 @@ void	init_graphics(void)
 		s->g.local_endian = 0;
 	s->g.mlx = mlx_init();
 	if (!s->g.mlx)
-		exit_error("minilbx init failed\n");
+		exit_error("minilbx init failed");
 }
 
 void	draw_player(char c)

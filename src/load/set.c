@@ -39,7 +39,7 @@ void	set_pair(t_terrain *tmp, int size, char *img1, char *img2)
 	tmp->img[0] = mlx_xpm_file_to_image(s->g.mlx, img1, &size, &size);
 	tmp->img[1] = mlx_xpm_file_to_image(s->g.mlx, img2, &size, &size);
 	if (!tmp->img[1])
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	tmp->img[1]->width = SPRITE;
 	tmp->img[1]->height = SPRITE;
 }
@@ -67,7 +67,7 @@ void	set_space(t_terrain *tmp, char c)
 	else
 		set_pair(tmp, size, EXIT_CLOSE, EXIT);
 	if (!tmp->img[0])
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	tmp->img[0]->width = SPRITE;
 	tmp->img[0]->height = SPRITE;
 }

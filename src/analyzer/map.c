@@ -31,7 +31,7 @@ void	verify_wall(char *line, int size, int fd, int row)
 	if (err)
 	{
 		close(fd);
-		exit_error_gnl("Missing wall on map border!\n", line);
+		exit_error_gnl("Missing wall on map border!", line);
 	}
 }
 
@@ -40,7 +40,7 @@ static void	verify_dimensions(char *line, int size, int fd)
 	if (line && size != (int)ft_strlen(line))
 	{
 		close(fd);
-		exit_error_gnl("Inconsistent map dimensions!\n", line);
+		exit_error_gnl("Inconsistent map dimensions!", line);
 	}
 }
 
@@ -56,7 +56,7 @@ static void	set_element(char *line, int x, int y, int fd)
 	int	*sly;
 
 	if (line[x] != 'E' && line[x] != 'P')
-		exit_error_gnl("Set element error!\n", line);
+		exit_error_gnl("Set element error!", line);
 	slx = &(ft_sl()->p.x);
 	sly = &(ft_sl()->p.y);
 	if (line[x] == 'E')
@@ -68,8 +68,8 @@ static void	set_element(char *line, int x, int y, int fd)
 	{
 		close(fd);
 		if (line[x] == 'P')
-			exit_error_gnl("There's more than one P!\n", line);
-		exit_error_gnl("There's more than one E!\n", line);
+			exit_error_gnl("There's more than one P!", line);
+		exit_error_gnl("There's more than one E!", line);
 	}
 	*slx = x;
 	*sly = y;
@@ -84,7 +84,7 @@ void	verify_item(char *line, int x, int y, int fd)
 	else if (line[x] != '0' && line[x] != '1')
 	{
 		close(fd);
-		exit_error_gnl("Unrecognized character in map!\n", line);
+		exit_error_gnl("Unrecognized character in map!", line);
 	}
 }
 

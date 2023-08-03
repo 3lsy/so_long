@@ -89,19 +89,18 @@ void	verify_map(void)
 		exit_error(strerror(errno));
 	read_map(NULL, fd);
 	if (!ft_sl()->map_height)
-		exit_error("Empty map!\n");
+		exit_error("Empty map!");
 	if (ft_sl()->p.x == -1)
-		exit_error("There's no player!\n");
+		exit_error("There's no player!");
 	if (ft_sl()->e.x == -1)
-		exit_error("There's no exit!\n");
+		exit_error("There's no exit!");
 	if (!ft_sl()->collects)
-		exit_error("There's no collectible\n");
+		exit_error("There's no collectible");
 }
 
 void	exit_error_gnl(char *e, char *line)
 {
 	free(line);
-	ft_perror("Error\n", EXIT_FAILURE);
 	ft_get_next_line(-503);
-	exit(ft_perror(e, EXIT_FAILURE));
+	exit_error(e);
 }
