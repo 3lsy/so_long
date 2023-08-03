@@ -12,6 +12,30 @@
 
 #include "so_long.h"
 
+/*
+**	After loading the map
+*/
+
+void	valid_path(int x, int y)
+{
+	t_sl	*s;
+
+	s = ft_sl();
+	if (0 <= x && x < s->map_width && 0 <= y && y < s->map_height)
+	{
+		if (s->map[y][x].type != '1' && !s->map[y][x].visited)
+		{
+			s->map[y][x].visited = 1;
+			if (s->map[y][x].type == 'C' || s->map[y][x].type == 'E')
+				s->found++;
+			valid_path(x - 1, y);
+			valid_path(x + 1, y);
+			valid_path(x, y - 1);
+			valid_path(x, y + 1);
+		}
+	}
+}
+
 int	valid_name(char *filename)
 {
 	const char	ext[4] = ".ber";
@@ -37,14 +61,8 @@ int	valid_name(char *filename)
 	return (1);
 }
 
-void	verify_map(void)
+void	read_map(char *line, int fd)
 {
-	char	*line;
-	int		fd;
-
-	fd = open(ft_sl()->filename, O_RDONLY);
-	if (fd < 0)
-		exit_error(strerror(errno));
 	line = ft_get_next_line(fd);
 	while (line)
 	{
@@ -60,8 +78,24 @@ void	verify_map(void)
 		free(line);
 	}
 	close(fd);
+}
+
+void	verify_map(void)
+{
+	int		fd;
+
+	fd = open(ft_sl()->filename, O_RDONLY);
+	if (fd < 0)
+		exit_error(strerror(errno));
+	read_map(NULL, fd);
 	if (!ft_sl()->map_height)
 		exit_error("Empty map!\n");
+	if (ft_sl()->p.x == -1)
+		exit_error("There's no player!\n");
+	if (ft_sl()->e.x == -1)
+		exit_error("There's no exit!\n");
+	if (!ft_sl()->collects)
+		exit_error("There's no collectible\n");
 }
 
 void	exit_error_gnl(char *e, char *line)

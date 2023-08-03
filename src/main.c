@@ -20,6 +20,9 @@ int	main(int ac, char **av)
 		verify_map();
 		init_graphics();
 		load_map();
+		valid_path(ft_sl()->p.x, ft_sl()->p.y);
+		if (ft_sl()->found != ft_sl()->collects + 1)
+			exit_error("Invalid path!\n");
 		load_player();
 		game();
 		return (0);
@@ -47,6 +50,7 @@ t_sl	*ft_sl(void)
 		.fd = 0,
 		.collects = 0,
 		.collected = 0,
+		.found = 0,
 		.movements = 0,
 		.map_height = 0,
 		.map_width = 0,
@@ -56,7 +60,11 @@ t_sl	*ft_sl(void)
 		.lf = NULL, .rg = NULL,
 		.x = -1, .y = -1
 	},
-		.e = {.img = {NULL, NULL}, .type = 'E', .status = 0, .x = -1, .y = -1},
+		.e = {
+		.img = {NULL, NULL},
+		.type = 'E', .status = 0,
+		.visited = 0, .x = -1, .y = -1
+	},
 		.g = {.mlx = NULL, .win = NULL, .local_endian = -1},
 	};
 
@@ -104,10 +112,14 @@ static __attribute__((destructor)) void	sl_d3structor(void)
 	}
 	if (s->g.mlx)
 	{
-		mlx_destroy_image(s->g.mlx, s->p.up);
-		mlx_destroy_image(s->g.mlx, s->p.dw);
-		mlx_destroy_image(s->g.mlx, s->p.lf);
-		mlx_destroy_image(s->g.mlx, s->p.rg);
+		if (s->p.up)
+			mlx_destroy_image(s->g.mlx, s->p.up);
+		if (s->p.dw)
+			mlx_destroy_image(s->g.mlx, s->p.dw);
+		if (s->p.lf)
+			mlx_destroy_image(s->g.mlx, s->p.lf);
+		if (s->p.rg)
+			mlx_destroy_image(s->g.mlx, s->p.rg);
 		mlx_destroy_display(s->g.mlx);
 		free(s->g.mlx);
 	}
