@@ -54,6 +54,7 @@ void	set_space(t_terrain *tmp, char c)
 	tmp->status = (c == 'C');
 	tmp->type = c;
 	tmp->img[1] = NULL;
+	tmp->visited = 0;
 	if (c == 'P' || c == '0')
 	{
 		tmp->type = '0';

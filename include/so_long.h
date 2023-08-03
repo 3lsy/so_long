@@ -94,6 +94,7 @@ typedef struct s_terrain {
 	int			x;
 	int			y;
 	t_bool		status;
+	t_bool		visited;
 }	t_terrain;
 
 typedef struct s_player {
@@ -126,6 +127,7 @@ typedef struct s_sl {
 
 	int			collects;
 	int			collected;
+	int			found;
 	int			movements;
 	int			map_height;
 	int			map_width;
@@ -148,8 +150,8 @@ t_sl	*ft_sl(void);
 **	Analyzer
 */
 
+void	valid_path(int x, int y);
 int		valid_name(char *filename);
-void	read_map(void);
 void	verify_map(void);
 void	verify_wall(char *line, int size, int fd, int row);
 void	verify_line(char *line, int fd);

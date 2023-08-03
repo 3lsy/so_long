@@ -42,7 +42,7 @@ DIRS        :=  $(DIRSRC) $(DIRFOO) $(DIRLOAD) $(DIRGRAPHICS) $(DIRGAME)
 SRC         =   main.c
 FOO         =	analyzer.c map.c
 LOAD		=	load.c set.c
-GRAPHICS	=	graphics.c image.c
+GRAPHICS	=	graphics.c
 GAME		=	game.c movement.c collect.c
 
 SRCS        :=  $(SRC) $(FOO) $(LOAD) $(GRAPHICS) $(GAME)

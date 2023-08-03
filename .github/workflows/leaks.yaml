@@ -28,7 +28,7 @@ jobs:
 
       - name: Leak test
         run: |
-          for map in maps/*.ber; do
+          for map in maps/*/*.ber; do
             echo "Testing $map..."
             valmessage=$(valgrind ./so_long "$map" 2>&1 || true)
             leaks=$(echo "$valmessage" | grep 'no leaks are possible' || true)
