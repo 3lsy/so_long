@@ -20,16 +20,16 @@ void	load_player(void)
 	s = ft_sl();
 	s->p.up = mlx_xpm_file_to_image(s->g.mlx, U_PLAYER, &size, &size);
 	if (!s->p.up)
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	s->p.dw = mlx_xpm_file_to_image(s->g.mlx, D_PLAYER, &size, &size);
 	if (!s->p.dw)
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	s->p.lf = mlx_xpm_file_to_image(s->g.mlx, L_PLAYER, &size, &size);
 	if (!s->p.lf)
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	s->p.rg = mlx_xpm_file_to_image(s->g.mlx, R_PLAYER, &size, &size);
 	if (!s->p.rg)
-		exit_error("minilibx img failed\n");
+		exit_error("minilibx img failed");
 	s->p.up->width = SPRITE;
 	s->p.up->height = SPRITE;
 	s->p.dw->width = SPRITE;

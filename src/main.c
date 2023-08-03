@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		load_map();
 		valid_path(ft_sl()->p.x, ft_sl()->p.y);
 		if (ft_sl()->found != ft_sl()->collects + 1)
-			exit_error("Invalid path!\n");
+			exit_error("Invalid path!");
 		load_player();
 		game();
 		return (0);
@@ -40,7 +40,8 @@ int	main(int ac, char **av)
 void	exit_error(char *e)
 {
 	ft_perror("Error\n", EXIT_FAILURE);
-	exit(ft_perror(e, EXIT_FAILURE));
+	ft_perror(e, EXIT_FAILURE);
+	exit(ft_perror("\n", EXIT_FAILURE));
 }
 
 t_sl	*ft_sl(void)
