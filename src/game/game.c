@@ -50,8 +50,6 @@ int	key_win(int key, __attribute__((unused)) void *p)
 		up();
 	else if (key == D_ARROW || key == S)
 		down();
-	else
-		printf("%d\n", key);
 	return (0);
 }
 
