@@ -12,6 +12,26 @@
 
 #include "so_long.h"
 
+int	max_win(__attribute__((unused)) void *p)
+{
+	t_sl	*s;
+	char	*nb;
+
+	s = ft_sl();
+	ft_plot_map();
+	nb = ft_itoa(s->movements);
+	if (!nb)
+		exit_error(strerror(errno));
+	draw_element(s->map_height - 1, 2);
+	mlx_string_put(s->g.mlx, s->g.win, SPRITE * 2 + 10,
+		s->map_height * SPRITE - 15, 0xFFFFFF, nb);
+	free(nb);
+	mlx_string_put(s->g.mlx, s->g.win, 21,
+		s->map_height * SPRITE - 15, 0xFFFFFF, "Moves:");
+	draw_player('d');
+	return (1);
+}
+
 int	exit_win(__attribute__((unused)) void *p)
 {
 	exit(EXIT_SUCCESS);
@@ -30,6 +50,8 @@ int	key_win(int key, __attribute__((unused)) void *p)
 		up();
 	else if (key == D_ARROW || key == S)
 		down();
+	else
+		printf("%d\n", key);
 	return (0);
 }
 
@@ -51,6 +73,7 @@ void	game(void)
 		exit_error("minilibx window failed");
 	ft_plot_map();
 	mlx_hook(s->g.win, 33, E_CLOSE, exit_win, 0);
+	mlx_hook(s->g.win, 19, E_MAXIM, max_win, 0);
 	mlx_key_hook(s->g.win, key_win, s->g.mlx);
 	mlx_set_font(s->g.mlx, s->g.win, "10x20");
 	mlx_string_put(s->g.mlx, s->g.win, 21,

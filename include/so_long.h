@@ -68,6 +68,7 @@
 # define R_PLAYER "./media/player/right_v2.xpm"
 
 # define E_CLOSE 131072
+# define E_MAXIM 131072
 # define SPRITE 42
 
 /*
