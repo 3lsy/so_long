@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/23 15:17:31 by echavez-          #+#    #+#             */
-/*   Updated: 2023/07/08 12:05:04 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:46:27 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ int	valid_name(char *filename)
 	{
 		if (filename[--size] != ext[--i])
 		{
-			ft_putendl("Error: Not a valid filename");
+			ft_putendl_fd("Error", 2);
+			ft_putendl_fd("Not a valid filename!", 2);
 			return (0);
 		}
 	}
 	if (i != 0)
 	{
-		ft_putendl("Error: Not a valid filename");
+		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Not a valid filename!", 2);
 		return (0);
 	}
 	ft_sl()->filename = filename;

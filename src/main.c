@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/02 23:06:38 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/04 12:49:14 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	main(int ac, char **av)
 		game();
 		return (0);
 	}
-	ft_putendl("Usage: ./so_long <map.ber>");
-	ft_putendl("  map.ber: A map which contains:");
-	ft_putendl("    0 : [valid path]  Empty space");
-	ft_putendl("    1 : [100% closed] Wall");
-	ft_putendl("    C : [1 minimum]   Collectible");
-	ft_putendl("    E : [unique]      Exit");
-	ft_putendl("    P : [unique]      Player (starting pos)");
+	ft_putendl_fd("Usage: ./so_long <map.ber>", 2);
+	ft_putendl_fd("  map.ber: A map which contains:", 2);
+	ft_putendl_fd("    0 : [valid path]  Empty space", 2);
+	ft_putendl_fd("    1 : [100% closed] Wall", 2);
+	ft_putendl_fd("    C : [1 minimum]   Collectible", 2);
+	ft_putendl_fd("    E : [unique]      Exit", 2);
+	ft_putendl_fd("    P : [unique]      Player (starting pos)", 2);
 	return (1);
 }
 
