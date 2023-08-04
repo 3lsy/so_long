@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 20:49:58 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/02 23:37:29 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:45:55 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@
 # define E_CLOSE 131072
 # define E_MAXIM 131072
 # define SPRITE 42
+
+# define S_TERRAINP 8UL
+# define S_TERRAIN 32UL
 
 /*
 **	Terrain types:
@@ -162,9 +165,9 @@ void	exit_error_gnl(char *e, char *line);
 **  Load
 */
 
-void	load_map(void);
+void	load_map(t_sl *s);
 void	load_player(void);
-void	set_space(t_terrain *tmp, char c);
+void	set_space(t_terrain *tmp, char c, char *line);
 
 /*
 **	Graphics

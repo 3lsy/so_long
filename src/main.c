@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 21:20:33 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/04 12:49:14 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:51:36 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	{
 		verify_map();
 		init_graphics();
-		load_map();
+		load_map(ft_sl());
 		valid_path(ft_sl()->p.x, ft_sl()->p.y);
 		if (ft_sl()->found != ft_sl()->collects + 1)
 			exit_error("Invalid path!");
@@ -80,25 +80,25 @@ static __attribute__((destructor)) void	sl_destruct0r(void)
 
 	s = ft_sl();
 	i = 0;
-	while (s->map != NULL && i < s->map_height)
+	while (s->map != NULL && s->map[i] && i < s->map_height)
 	{
 		j = 0;
 		while (j < s->map_width)
 		{
-			free(s->map[i][j].img[0]->image);
-			free(s->map[i][j].img[0]);
+			if (s->map[i][j].img[0])
+				free(s->map[i][j].img[0]->image);
+			if (s->map[i][j].img[0])
+				free(s->map[i][j].img[0]);
 			if (s->map[i][j].img[1])
-			{
 				free(s->map[i][j].img[1]->image);
+			if (s->map[i][j].img[1])
 				free(s->map[i][j].img[1]);
-			}
 			j++;
 		}
 		free(s->map[i++]);
 	}
 	if (s->map)
 		free(s->map);
-	s->map = NULL;
 }
 
 static __attribute__((destructor)) void	sl_d3structor(void)

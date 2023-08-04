@@ -6,7 +6,7 @@
 /*   By: echavez- <echavez-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 23:43:26 by echavez-          #+#    #+#             */
-/*   Updated: 2023/08/02 22:00:25 by echavez-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:47:18 by echavez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	load_line(char *line, int i)
 	{
 		tmp.x = j;
 		tmp.y = i;
-		set_space(&tmp, line[j]);
+		set_space(&tmp, line[j], line);
 		ft_sl()->map[i][j] = tmp;
 		j++;
 	}
@@ -58,30 +58,30 @@ void	load_line(char *line, int i)
 	ft_sl()->map[i][j] = tmp;
 }
 
-void	load_map(void)
+void	load_map(t_sl *s)
 {
 	char	*line;
 	int		fd;
 	int		i;
 
-	fd = open(ft_sl()->filename, O_RDONLY);
+	fd = open(s->filename, O_RDONLY);
 	if (fd < 0)
 		exit_error(strerror(errno));
-	ft_sl()->map = malloc(sizeof(t_terrain *) * (ft_sl()->map_height + 1));
-	if (!ft_sl()->map)
+	s->map = ft_calloc(sizeof(t_terrain *), 1 + s->map_height);
+	if (!s->map)
 		exit_error("Map couldn't be allocated");
 	line = ft_get_next_line(fd);
 	i = 0;
 	while (line)
 	{
-		ft_sl()->map[i] = malloc(sizeof(t_terrain) * (ft_sl()->map_width + 1));
-		if (!ft_sl()->map[i])
+		s->map[i] = ft_calloc(sizeof(t_terrain), s->map_width + 1);
+		if (!s->map[i])
 			exit_error_gnl("Map couldn't be allocated", line);
 		load_line(line, i++);
 		free(line);
 		line = ft_get_next_line(fd);
 	}
-	ft_sl()->map[i] = NULL;
+	s->map[i] = NULL;
 	if (line)
 		free(line);
 }
